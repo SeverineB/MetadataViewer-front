@@ -1,0 +1,17 @@
+@import 'src/styles/vars';
+
+.home-page-message {
+  margin: 1em auto;
+  & p {
+    color: #ffffff;
+    font-size: 1em;
+    @include m1200() {
+      font-size: 1.2em;
+     };
+  }
+
+  & span {
+    font-weight: bold;
+  }
+
+}

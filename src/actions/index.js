@@ -1,10 +1,25 @@
-export const INCREMENT_COUNTER = 'INCREMENT_COUNTER';
-export const DECREMENT_COUNTER = 'DECREMENT_COUNTER';
+export * from './upload.actions';
+export * from './user.actions';
+export * from './auth.actions';
 
-export const increment = () => ({
-  type: INCREMENT_COUNTER,
+// ACTION TYPES
+
+export const CHANGE_FIELD = 'CHANGE_FIELD';
+export const CHANGE_USER_FIELD = 'CHANGE_USER_FIELD';
+export const TOGGLE_SHOW_LOGIN = 'TOGGLE_SHOW_LOGIN';
+export const TOGGLE_SHOW_REGISTER = 'TOGGLE_SHOW_REGISTER';
+
+// ACTION CREATOR
+
+export const changeField = (value, name) => ({
+  type: CHANGE_FIELD,
+  value,
+  name,
 });
 
-export const decrement = () => ({
-  type: DECREMENT_COUNTER,
+export const changeUserField = (value, name) => ({
+  type: CHANGE_USER_FIELD,
+  value,
+  name,
 });
+

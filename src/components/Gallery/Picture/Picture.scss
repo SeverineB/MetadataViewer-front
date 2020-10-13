@@ -1,0 +1,58 @@
+@import 'src/styles/vars';
+
+.picture-item {
+  position: relative;
+  margin: 1em auto;
+  width: 90%;
+  max-height: 20em;
+
+  @include m1200() {
+    width: 30rem;
+    overflow: hidden;
+    margin: 1em;
+   };
+  & img {
+    width: 100%;
+    transform: scale(1.1);
+    transition: all 1s;
+    &:hover {
+      transform: scale(1.01);
+    }
+    @include m1200() {
+     };
+  }
+}
+.picture-item-delete {
+  position: absolute;
+  top: 2%;
+  left: 90%;
+  background-color: transparent;
+  border: none;
+  z-index: 100;
+
+  &:focus {
+    background-color: transparent;
+    border: none;
+  } 
+}
+.delete-success {
+  width: 100px;
+  height: 50px;
+  background-color: #69b876;
+}
+
+.delete-error {
+  width: 100px;
+  height: 50px;
+  background-color: #df6b57;
+}
+
+.delete-modal {
+  display: none;
+
+  &--opened {
+    display: block;
+    position: absolute;
+    top: 0;
+  }
+}
