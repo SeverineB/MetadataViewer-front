@@ -21,9 +21,7 @@ import PublicRoute from '../PublicRoute';
 import Page404 from '../Page404/Page404';
 
 // == Composant
-const App = ({ isLogged, checkIfLogged }) => {
-  console.log('isLogged dans app :', isLogged);
-
+const App = ({ checkIfLogged }) => {
   // check if the user is connected
   useEffect(() => {
     console.log('je checke si le user est bien connecté');
@@ -33,7 +31,7 @@ const App = ({ isLogged, checkIfLogged }) => {
   return (
     <div className="app">
       <NavBar />
-      <h1 className="app-title">Galerie Photos</h1>
+      <h1 className="app-title">Gestionnaire de métadonnées</h1>
 
       <Switch>
         <Route exact path="/" component={Home} />
@@ -47,7 +45,6 @@ const App = ({ isLogged, checkIfLogged }) => {
 };
 
 App.propTypes = {
-  isLogged: PropTypes.bool.isRequired,
   checkIfLogged: PropTypes.func.isRequired,
 };
 

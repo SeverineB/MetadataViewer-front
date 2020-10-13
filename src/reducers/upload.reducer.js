@@ -1,5 +1,6 @@
 import {
   SAVE_FILES,
+  SAVE_METADATA,
   CHANGE_FILE,
   CHANGE_URL,
   TOGGLE_MODAL,
@@ -7,9 +8,9 @@ import {
 
 const initialState = {
   files: [],
-  file: {
-  },
+  file: {},
   fileUrl: '',
+  metadata: {},
   loading: true,
   isSubmitted: false,
   isDeleted: false,
@@ -22,6 +23,16 @@ const uploadReducer = (state = initialState, action = {}) => {
       return {
         ...state,
         files: action.files,
+      };
+    case SAVE_METADATA:
+      return {
+        ...state,
+        metadata: {
+          ...state.metadata,
+          name: action.metaName,
+          size: action.metaSize,
+          type: action.metaType,
+        },
       };
     case CHANGE_FILE:
       return {

@@ -13,7 +13,9 @@ const Gallery = ({ files }) => {
     <>
       <div className="pictures-gallery-list">
         { files.map((file) => (
-          <Picture key={file.id} {...file} file={file} />
+          <>
+            <Picture key={file.id} {...file} file={file} />
+          </>
         ))}
       </div>
     </>
@@ -24,7 +26,7 @@ Gallery.propTypes = {
   isLogged: PropTypes.bool.isRequired,
   files: PropTypes.arrayOf(
     PropTypes.shape({
-      _id: PropTypes.string.isRequired,
+      id: PropTypes.string.isRequired,
     }),
   ).isRequired,
 };

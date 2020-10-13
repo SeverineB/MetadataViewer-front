@@ -1,8 +1,10 @@
+/* eslint-disable no-console */
 import axios from 'axios';
 
 import {
   FETCH_FILES,
   saveFiles,
+  saveMetadata,
   userDisconnected,
   userConnected,
   UPLOAD_FILE,
@@ -18,6 +20,7 @@ const upload = (store) => (next) => (action) => {
         .then((response) => {
           console.log('FETCH FILES :', response.data);
           store.dispatch(saveFiles(response.data));
+          store.dispatch(saveMetadata(response.data.metadata));
         })
         .catch((error) => {
           if (error.statusCode === 401) {
@@ -32,7 +35,6 @@ const upload = (store) => (next) => (action) => {
       const state = store.getState();
       const formData = new FormData();
       formData.append('image', state.upload.file);
-      console.log('FILE TO UPLOAD IN REQUEST:', state.upload.file);
       axios.post(`${serverURL}/upload`, formData,
         {
           headers: {
@@ -41,6 +43,8 @@ const upload = (store) => (next) => (action) => {
           withCredentials: true,
         })
         .then((response) => {
+          console.log('RES DANS UPLOAD :', response.data);
+          store.dispatch(saveMetadata({ ...response.data }));
           console.log('file bien uploadé');
         })
         .catch((error) => {

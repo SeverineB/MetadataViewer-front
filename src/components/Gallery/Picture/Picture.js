@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import axios from 'axios';
 import { Button, Modal } from 'react-bootstrap';
 
 // import styles
@@ -12,51 +13,67 @@ const Picture = ({
   file,
   isLogged,
   changeFile,
-  deletePicture,
+ /*  deletePicture, */
   open,
   toggleModal,
 }) => {
   const [deleteError, setDeleteError] = useState('');
   const [deleteSuccess, setDeleteSuccess] = useState('');
- 
-  console.log('FILE ID DANS PICTURE VAUT :', file.id);
-  console.log('FILE DANS PICTURE VAUT :', file);
+
+  const { name, size, type } = file.metadata;
 
   const openDeleteModal = () => {
     toggleModal();
   };
 
+  const deletePicture = () => {
+    // axios request for deleting a picture
+    axios.delete(`http://localhost:3001/api/images/delete/${file.id}`,
+      {
+        withCredentials: true,
+      })
+      .then((response) => {
+        if (response.status === 200) {
+          console.log('delete ok');
+          setDeleteSuccess('L\'image a bien été supprimée');
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+        setDeleteError('Impossible de supprimer l\'image');
+      });
+  };
+
   const handleDelete = () => {
-    console.log('je soumets le delete');
+    deletePicture();
   };
 
   return (
     <>
       <div className="picture-item">
         {isLogged
-        && (
-          <button type="submit" className="picture-item-delete" onClick={openDeleteModal} >
-            <img src={deleteIcon} alt="croix" />
-          </button>
-        )}
-        <img src={file.imageUrl} alt={file.imageUrl} />
-        <div className="meta-datas">
-          <p></p>
+          && (
+            <button type="submit" className="picture-item-delete" onClick={handleDelete}>
+              <img src={deleteIcon} alt="croix" />
+            </button>
+          )}
+        <div className="picture-item-image">
+          <img src={file.imageUrl} alt={file.imageUrl} />
         </div>
-      {/*   <Modal.Dialog className={open ? 'delete-modal delete-modal--opened' : 'delete-modal'}>
-          <Modal.Header closeButton>
-            <Modal.Title>Modal title</Modal.Title>
-          </Modal.Header>
-
-          <Modal.Body>
-            <p>Voulez-vous vraiment supprimer cette image ?</p>
-          </Modal.Body>
-
-          <Modal.Footer>
-            <Button variant="secondary">Non</Button>
-            <Button variant="primary" onSubmit={handleDelete}>Oui</Button>
-          </Modal.Footer>
-        </Modal.Dialog> */}
+        <div className="picture-item-metadatas">
+          <div className="picture-item-metadatas-name">
+            <span>Nom :</span>
+            <p>{name}</p>
+          </div>
+          <div className="picture-item-metadatas-size">
+            <span>Taille :</span>
+            <p>{size} octets</p>
+          </div>
+          <div className="picture-item-metadatas-type">
+            <span>Type :</span>
+            <p>{type}</p>
+          </div>
+        </div>
       </div>
 
       {deleteError ? <div className="delete-error">{deleteError}</div> : ''}

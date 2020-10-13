@@ -5,6 +5,7 @@ export const SAVE_FILES = 'SAVE_FILES';
 export const CHANGE_FILE = 'CHANGE_FILE';
 export const CHANGE_URL = 'CHANGE_URL';
 export const UPLOAD_FILE = 'UPLOAD_FILE';
+export const SAVE_METADATA = 'SAVE_METADATA';
 export const DELETE_PICTURE = 'DELETE_PICTURE';
 export const TOGGLE_MODAL = 'TOGGLE_MODAL';
 
@@ -31,6 +32,13 @@ export const saveFiles = (files) => ({
 
 export const uploadFile = () => ({
   type: UPLOAD_FILE,
+});
+
+export const saveMetadata = ({ metadata }) => ({
+  type: SAVE_METADATA,
+  metaName: metadata.name,
+  metaSize: metadata.size,
+  metaType: metadata.type,
 });
 
 export const deletePicture = () => ({

@@ -1,7 +1,7 @@
 @import 'src/styles/vars';
 
 .pictures-gallery {
-  @include m1200() {
+  @include m767() {
     width: 100vw;
    };
   &-list {
@@ -10,8 +10,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 0.2em;
-    @include m1200() {
+    @include m767() {
       margin: 1em 1em;
       width: 100vw;
       flex-direction: row;
