@@ -10,7 +10,6 @@ const LoginForm = ({
   email,
   password,
   login,
-  isLogged,
 }) => {
   const handleChange = (evt) => {
     evt.preventDefault();

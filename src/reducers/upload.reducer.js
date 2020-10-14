@@ -1,10 +1,14 @@
 import {
   SAVE_FILES,
   SAVE_METADATA,
+  ADD_FILE,
+  SAVE_FILE,
   CHANGE_FILE,
   CHANGE_URL,
-  TOGGLE_MODAL,
+  DELETE_PICTURE,
 } from '../actions';
+
+import { getNextId } from '../selectors';
 
 const initialState = {
   files: [],
@@ -14,7 +18,6 @@ const initialState = {
   loading: true,
   isSubmitted: false,
   isDeleted: false,
-  open: false,
 };
 
 const uploadReducer = (state = initialState, action = {}) => {
@@ -34,6 +37,12 @@ const uploadReducer = (state = initialState, action = {}) => {
           type: action.metaType,
         },
       };
+    case SAVE_FILE:
+      return {
+        ...state,
+        id: action.id,
+        imageUrl: action.imageUrl,
+      };
     case CHANGE_FILE:
       return {
         ...state,
@@ -44,11 +53,8 @@ const uploadReducer = (state = initialState, action = {}) => {
         ...state,
         fileUrl: action.fileUrl,
       };
-    case TOGGLE_MODAL:
-      return {
-        ...state,
-        open: !state.open,
-      };
+    case DELETE_PICTURE:
+      return state.filter((picture) => picture.id !== picture);
     default:
       return state;
   }

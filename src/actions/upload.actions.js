@@ -4,6 +4,7 @@ export const FETCH_FILES = 'FETCH_FILES';
 export const SAVE_FILES = 'SAVE_FILES';
 export const CHANGE_FILE = 'CHANGE_FILE';
 export const CHANGE_URL = 'CHANGE_URL';
+export const SAVE_FILE = 'SAVE_FILE';
 export const UPLOAD_FILE = 'UPLOAD_FILE';
 export const SAVE_METADATA = 'SAVE_METADATA';
 export const DELETE_PICTURE = 'DELETE_PICTURE';
@@ -30,6 +31,10 @@ export const saveFiles = (files) => ({
   files,
 });
 
+export const saveFile = () => ({
+  type: SAVE_FILE,
+});
+
 export const uploadFile = () => ({
   type: UPLOAD_FILE,
 });
@@ -41,8 +46,9 @@ export const saveMetadata = ({ metadata }) => ({
   metaType: metadata.type,
 });
 
-export const deletePicture = () => ({
+export const deletePicture = (picture) => ({
   type: DELETE_PICTURE,
+  picture,
 });
 
 export const toggleModal = () => ({

@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 /* eslint-disable no-console */
 import axios from 'axios';
 
@@ -5,6 +6,7 @@ import {
   FETCH_FILES,
   saveFiles,
   saveMetadata,
+  saveFile,
   userDisconnected,
   userConnected,
   UPLOAD_FILE,
@@ -44,6 +46,7 @@ const upload = (store) => (next) => (action) => {
         })
         .then((response) => {
           console.log('RES DANS UPLOAD :', response.data);
+          store.dispatch(saveFile(response.data));
           store.dispatch(saveMetadata({ ...response.data }));
           console.log('file bien uploadé');
         })
@@ -55,8 +58,8 @@ const upload = (store) => (next) => (action) => {
 
     case DELETE_PICTURE: {
       const state = store.getState();
-      const fileToDelete = state.upload.file;
-      axios.delete(`http://localhost:3001/api/images/delete/${fileToDelete.id}`,
+      const fileToDelete = state.upload.files.image;
+      axios.delete(`http://localhost:3001/api/images/delete/${fileToDelete._id}`,
         {
           withCredentials: true,
         })

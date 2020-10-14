@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import { Button, Modal } from 'react-bootstrap';
@@ -7,28 +8,25 @@ import { Button, Modal } from 'react-bootstrap';
 import './Picture.scss';
 
 import deleteIcon from '../../../assets/icons/x-square.svg';
-import { toggleModal } from '../../../actions';
 
 const Picture = ({
   file,
   isLogged,
-  changeFile,
- /*  deletePicture, */
-  open,
-  toggleModal,
+/*   deletePicture, */
 }) => {
   const [deleteError, setDeleteError] = useState('');
   const [deleteSuccess, setDeleteSuccess] = useState('');
 
-  const { name, size, type } = file.metadata;
-
-  const openDeleteModal = () => {
-    toggleModal();
+  const fileToUrl = () => {
+    const imageUrl = `http://localhost:3001/${file.image.imagePath}`;
+    return imageUrl;
   };
+
+  const { name, size, type } = file.metadata;
 
   const deletePicture = () => {
     // axios request for deleting a picture
-    axios.delete(`http://localhost:3001/api/images/delete/${file.id}`,
+    axios.delete(`http://localhost:3001/api/images/delete/${file.image._id}`,
       {
         withCredentials: true,
       })
@@ -36,6 +34,7 @@ const Picture = ({
         if (response.status === 200) {
           console.log('delete ok');
           setDeleteSuccess('L\'image a bien été supprimée');
+          document.location.reload(true);
         }
       })
       .catch((error) => {
@@ -48,6 +47,13 @@ const Picture = ({
     deletePicture();
   };
 
+  // add style to the exifMetadata object
+  const displayMetadata = (data) => {
+    const stringData = JSON.stringify(data, null, 2);
+    const styledData = stringData.replace(/"/g, '').replace(/^ +/gm, ' ').replace(/{/g, '').replace(/}/g, '');
+    return styledData;
+  };
+
   return (
     <>
       <div className="picture-item">
@@ -58,7 +64,7 @@ const Picture = ({
             </button>
           )}
         <div className="picture-item-image">
-          <img src={file.imageUrl} alt={file.imageUrl} />
+          <img src={fileToUrl()} alt={file.image.name} />
         </div>
         <div className="picture-item-metadatas">
           <div className="picture-item-metadatas-name">
@@ -73,6 +79,13 @@ const Picture = ({
             <span>Type :</span>
             <p>{type}</p>
           </div>
+          <div className="picture-item-metadatas-exif">
+            {file.exifMetadata ? (
+              <div className="picture-item-metadatas-exif-item">
+                <pre>{displayMetadata(file.exifMetadata)}</pre>
+              </div>
+            ) : <p className="picture-item-metadatas-exif--noentry">Il n'y a pas de métadonnées pour cette image</p>}
+          </div>
         </div>
       </div>
 
@@ -83,12 +96,9 @@ const Picture = ({
 };
 
 Picture.propTypes = {
-  open: PropTypes.bool.isRequired,
   file: PropTypes.object.isRequired,
   isLogged: PropTypes.bool.isRequired,
-  changeFile: PropTypes.func.isRequired,
   deletePicture: PropTypes.func.isRequired,
-  toggleModal: PropTypes.func.isRequired,
 };
 
 export default Picture;

@@ -14,11 +14,8 @@ const UploadForm = ({
 }) => {
   const handleChange = (evt) => {
     evt.preventDefault();
-    console.log('je récupère la photo à uploader');
     const fileToUpload = evt.target.files[0];
-    console.log('PICTURE TO UPLOAD :', fileToUpload);
     const newFileUrl = URL.createObjectURL(evt.target.files[0]);
-    console.log('NEW FILE URL :', newFileUrl);
     changeFile(fileToUpload);
     changeUrl(newFileUrl);
   };
@@ -63,6 +60,7 @@ UploadForm.propTypes = {
   changeFile: PropTypes.func.isRequired,
   fileUrl: PropTypes.string.isRequired,
   changeUrl: PropTypes.func.isRequired,
+  addFile: PropTypes.func.isRequired,
   uploadFile: PropTypes.func.isRequired,
 };
 

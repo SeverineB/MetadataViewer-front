@@ -9,13 +9,14 @@ import Picture from '../../containers/Picture';
 
 const Gallery = ({ files }) => {
   console.log('files vaut ', files);
+
   return (
     <>
       <div className="pictures-gallery-list">
-        { files.map((file) => (
-          <>
-            <Picture key={file.id} {...file} file={file} />
-          </>
+        {files.map((file) => (
+          <div key={file.image._id}>
+            <Picture {...file} file={file} />
+          </div>
         ))}
       </div>
     </>
@@ -26,7 +27,7 @@ Gallery.propTypes = {
   isLogged: PropTypes.bool.isRequired,
   files: PropTypes.arrayOf(
     PropTypes.shape({
-      id: PropTypes.string.isRequired,
+      id: PropTypes.string,
     }),
   ).isRequired,
 };

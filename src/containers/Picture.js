@@ -7,7 +7,6 @@ import { changeFile, deletePicture, toggleModal } from '../actions';
 const mapStateToProps = (state) => ({
   isLogged: state.auth.isLogged,
   isDeleted: state.upload.isDeleted,
-  metadata: state.upload.metadata,
   open: state.upload.open,
 });
 
