@@ -43,7 +43,7 @@ const auth = (store) => (next) => (action) => {
     }
 
     case LOGOUT: {
-      api.post('users/logout', {},
+      api.get('users/logout',
         {
           withCredentials: true,
         })
