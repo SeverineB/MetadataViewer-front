@@ -1,5 +1,6 @@
 // ACTION TYPES
 
+export const REGISTER = 'REGISTER';
 export const LOGIN = 'LOGIN';
 export const LOGOUT = 'LOGOUT';
 export const USER_CONNECTED = 'USER_CONNECTED';
@@ -10,6 +11,10 @@ export const USER_DISCONNECTED = 'USER_DISCONNECTED';
 
 export const login = () => ({
   type: LOGIN,
+});
+
+export const register = () => ({
+  type: REGISTER,
 });
 
 export const logout = () => ({
@@ -25,7 +30,6 @@ export const userConnected = (isLogged) => ({
   isLogged,
 });
 
-export const userDisconnected = (isDisconnected) => ({
+export const userDisconnected = () => ({
   type: USER_DISCONNECTED,
-  isDisconnected,
 });

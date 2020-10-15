@@ -1,8 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
+import React from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
-import { Button, Modal } from 'react-bootstrap';
 
 // import styles
 import './Picture.scss';
@@ -12,11 +10,7 @@ import deleteIcon from '../../../assets/icons/x-square.svg';
 const Picture = ({
   file,
   isLogged,
-/*   deletePicture, */
 }) => {
-  const [deleteError, setDeleteError] = useState('');
-  const [deleteSuccess, setDeleteSuccess] = useState('');
-
   const fileToUrl = () => {
     const imageUrl = `http://localhost:3001/${file.image.imagePath}`;
     return imageUrl;
@@ -25,7 +19,7 @@ const Picture = ({
   const { name, size, type } = file.metadata;
 
   const deletePicture = () => {
-    // axios request for deleting a picture
+    // axios request to delete a picture
     axios.delete(`http://localhost:3001/api/images/delete/${file.image._id}`,
       {
         withCredentials: true,
@@ -33,13 +27,11 @@ const Picture = ({
       .then((response) => {
         if (response.status === 200) {
           console.log('delete ok');
-          setDeleteSuccess('L\'image a bien été supprimée');
           document.location.reload(true);
         }
       })
       .catch((error) => {
         console.log(error);
-        setDeleteError('Impossible de supprimer l\'image');
       });
   };
 
@@ -89,8 +81,6 @@ const Picture = ({
         </div>
       </div>
 
-      {deleteError ? <div className="delete-error">{deleteError}</div> : ''}
-      {deleteSuccess ? <div className="delete-success">{deleteSuccess}</div> : ''}
     </>
   );
 };
@@ -98,7 +88,6 @@ const Picture = ({
 Picture.propTypes = {
   file: PropTypes.object.isRequired,
   isLogged: PropTypes.bool.isRequired,
-  deletePicture: PropTypes.func.isRequired,
 };
 
 export default Picture;

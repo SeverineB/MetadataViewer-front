@@ -2,11 +2,10 @@ import { connect } from 'react-redux';
 
 import Gallery from '../components/Gallery/Gallery';
 
-import { deletePicture } from '../actions';
-
 const mapStateToProps = (state) => ({
   files: state.upload.files,
   isLogged: state.auth.isLogged,
+  errors: state.error.errors,
 });
 
 const mapDispatchToProps = () => ({});

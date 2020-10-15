@@ -1,14 +1,11 @@
 import {
   SAVE_FILES,
   SAVE_METADATA,
-  ADD_FILE,
   SAVE_FILE,
+  FINISH_LOADING,
   CHANGE_FILE,
   CHANGE_URL,
-  DELETE_PICTURE,
 } from '../actions';
-
-import { getNextId } from '../selectors';
 
 const initialState = {
   files: [],
@@ -16,8 +13,6 @@ const initialState = {
   fileUrl: '',
   metadata: {},
   loading: true,
-  isSubmitted: false,
-  isDeleted: false,
 };
 
 const uploadReducer = (state = initialState, action = {}) => {
@@ -25,6 +20,7 @@ const uploadReducer = (state = initialState, action = {}) => {
     case SAVE_FILES:
       return {
         ...state,
+        loading: false,
         files: action.files,
       };
     case SAVE_METADATA:
@@ -43,6 +39,11 @@ const uploadReducer = (state = initialState, action = {}) => {
         id: action.id,
         imageUrl: action.imageUrl,
       };
+    case FINISH_LOADING:
+      return {
+        ...state,
+        loading: false,
+      };
     case CHANGE_FILE:
       return {
         ...state,
@@ -53,8 +54,6 @@ const uploadReducer = (state = initialState, action = {}) => {
         ...state,
         fileUrl: action.fileUrl,
       };
-    case DELETE_PICTURE:
-      return state.filter((picture) => picture.id !== picture);
     default:
       return state;
   }

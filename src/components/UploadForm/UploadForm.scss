@@ -1,19 +1,55 @@
 @import 'src/styles/vars';
 
-.upload-image-form {
-  width: 100vw;
-  background-color: #aa9c9c;
+.upload-image {
+  display: flex;
+  flex-direction: column;
+  height: 40em;
 }
 
-.upload-image-preview {
+.upload-image-form {
   width: 90vw;
-  height: 30em;
-  border: #c4bbbb;
+  background-color:#ffffff;
+  border-radius: 0.5em;
   margin: 1em auto;
+  padding: 2em 0.5em;
+  font-size: 1em;
+  @include m767() {
+    font-size: 1.4em;
+   };
+  @include m1200() {
+    font-size: 1.6em;
+    width: 30em;
+   };
+  .btn-primary{
+    background-color: #5bf8c9;
+    border: none;
+    font-size: 0.8em;
+    margin-top: 1em;
+  }
+
+  input[type=file] {
+    background-color: #5bf8c9;
+    font-size: 0.8em;
+    overflow: hidden;
+  }
+
+  .form-label {
+    font-size: 0.8em;
+    margin-bottom: 1.2em;
+  }
+}
+
+.upload-image-preview-item {
+  width: 90vw;
+  height: 20em;
+  border: #c4bbbb;
+  border-radius: 0.5em;
+  margin: 1em auto;
+  @include m1200() {
+    width: 45rem;
+    };
   & img {
+    border-radius: 0.5em;
     width: 100%;
-    @include m1200() {
-      width: 30rem;
-     };
   }
 }

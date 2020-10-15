@@ -6,9 +6,8 @@ export const CHANGE_FILE = 'CHANGE_FILE';
 export const CHANGE_URL = 'CHANGE_URL';
 export const SAVE_FILE = 'SAVE_FILE';
 export const UPLOAD_FILE = 'UPLOAD_FILE';
+export const FINISH_LOADING = 'FINISH_LOADING';
 export const SAVE_METADATA = 'SAVE_METADATA';
-export const DELETE_PICTURE = 'DELETE_PICTURE';
-export const TOGGLE_MODAL = 'TOGGLE_MODAL';
 
 // ACTION CREATORS
 
@@ -39,18 +38,13 @@ export const uploadFile = () => ({
   type: UPLOAD_FILE,
 });
 
+export const finishLoading = () => ({
+  type: FINISH_LOADING,
+});
+
 export const saveMetadata = ({ metadata }) => ({
   type: SAVE_METADATA,
   metaName: metadata.name,
   metaSize: metadata.size,
   metaType: metadata.type,
-});
-
-export const deletePicture = (picture) => ({
-  type: DELETE_PICTURE,
-  picture,
-});
-
-export const toggleModal = () => ({
-  type: TOGGLE_MODAL,
 });

@@ -1,20 +1,16 @@
 import { connect } from 'react-redux';
 import Home from '../components/Home/Home';
 
-import { fetchFiles, redirectHome } from '../actions';
+import { fetchFiles } from '../actions';
 
 const mapStateToProps = (state) => ({
   isLogged: state.auth.isLogged,
-  loading: state.auth.loading,
-  session: state.auth.session,
+  loading: state.upload.loading,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   fetchFiles: () => {
     dispatch(fetchFiles());
-  },
-  redirectHome: (value) => {
-    dispatch(redirectHome(value));
   },
 });
 

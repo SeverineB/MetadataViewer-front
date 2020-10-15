@@ -1,23 +1,36 @@
 @import 'src/styles/vars';
 
 .pictures-gallery {
-  @include m767() {
-    width: 100vw;
-   };
   &-list {
-    width: 100vw;
+    width: 90vw;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin: 0 auto;
     @include m767() {
-      margin: 1em 1em;
       width: 100vw;
       flex-direction: row;
       flex-wrap: wrap;
       align-items: center;
       justify-content: center;
      };
+
+     .error-message {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      width: 30em;
+      height: 5em;
+      background-color: #e07272;
+      border-radius: 0.2em;
+      color: black;
+      font-weight: bold;
+
+      &--hidden {
+        display: none;
+      }
+    }
   }
 }
 

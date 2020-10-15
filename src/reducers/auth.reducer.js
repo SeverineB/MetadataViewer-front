@@ -21,6 +21,7 @@ const auth = (state = initialState, action = {}) => {
     case LOGIN:
       return {
         ...state,
+        loading: true,
         isLogged: true,
       };
     case REGISTER:
@@ -53,7 +54,7 @@ const auth = (state = initialState, action = {}) => {
     case USER_DISCONNECTED:
       return {
         ...state,
-        isDisconnected: action.isDisconnected,
+        isLogged: false,
       };
     default:
       return state;

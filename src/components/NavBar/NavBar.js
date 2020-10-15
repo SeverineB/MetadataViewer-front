@@ -23,7 +23,6 @@ const NavBar = ({ isLogged, logout }) => {
             ? (
               <>
                 <Link to="/login">Connexion</Link>
-                <Link to="/register">Inscription</Link>
               </>
             ) : (
               <>

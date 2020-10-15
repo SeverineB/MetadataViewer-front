@@ -11,14 +11,15 @@ import Gallery from '../../containers/Gallery';
 const Home = ({
   fetchFiles,
   isLogged,
-  session,
   loading,
 }) => {
   useEffect(() => {
     fetchFiles();
   }, []);
 
-  // TO DISPLAY USERNAME
+  console.log('LOADING ', loading);
+
+  // To display username
   const currentUsername = localStorage.getItem('username');
 
   return (
@@ -26,12 +27,12 @@ const Home = ({
       {loading && (
         <Loader
           type="Circles"
-          color="#00BFFF"
-          height={50}
-          width={50}
+          color="#5bf8c9"
+          height={40}
+          width={40}
         />
       )}
-      {isLogged && (
+      {isLogged && !loading && (
         <div className="home-page-message">
           <p className="home-page-message-text">Vous êtes bien connecté(e), bienvenu(e) <span>{currentUsername} </span>!</p>
         </div>
@@ -42,14 +43,9 @@ const Home = ({
 };
 
 Home.propTypes = {
-  session: PropTypes.object,
   loading: PropTypes.bool.isRequired,
   isLogged: PropTypes.bool.isRequired,
   fetchFiles: PropTypes.func.isRequired,
-};
-
-Home.defaultProps = {
-  session: '',
 };
 
 export default Home;

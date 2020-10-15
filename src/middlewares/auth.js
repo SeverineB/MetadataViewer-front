@@ -1,6 +1,5 @@
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable no-console */
-import axios from 'axios';
 import Cookies from 'js-cookie';
 
 import {
@@ -8,18 +7,19 @@ import {
   LOGOUT,
   CHECK_IF_LOGGED,
   saveUser,
+  finishLoading,
   userConnected,
   userDisconnected,
 } from '../actions';
 
-const serverURL = 'http://localhost:3001/api/users';
+import api from '../services/api';
 
 const auth = (store) => (next) => (action) => {
   switch (action.type) {
     case LOGIN: {
       const state = store.getState();
       const { email, password } = state.user;
-      axios.post(`${serverURL}/login`, {
+      api.post('users/login', {
         email,
         password,
       },
@@ -32,31 +32,34 @@ const auth = (store) => (next) => (action) => {
           localStorage.setItem('username', response.data.session.username);
           store.dispatch(saveCurrentUser);
           store.dispatch(userConnected(true));
+          store.dispatch(finishLoading());
         })
         .catch((error) => {
           console.log('impossible de se connecter', error.message);
+          store.dispatch(userDisconnected());
         });
+      next(action);
       break;
     }
 
     case LOGOUT: {
-      axios.post(`${serverURL}/logout`, {},
+      api.post('users/logout', {},
         {
           withCredentials: true,
         })
         .then((response) => {
           Cookies.remove('token');
           store.dispatch(userConnected(false));
-          store.dispatch(userDisconnected(true));
         })
         .catch((error) => {
           console.log('Impossible de déconnecter l\'utilisateur', error.message);
         });
+      next(action);
       break;
     }
 
     case CHECK_IF_LOGGED: {
-      axios.post(`${serverURL}/isLogged`, {},
+      api.post('users/isLogged', {},
         {
           withCredentials: true,
         })
@@ -66,6 +69,7 @@ const auth = (store) => (next) => (action) => {
         })
         .catch((error) => {
           console.log('impossible de se connecter', error.message);
+          store.dispatch(userDisconnected());
         });
       break;
     }

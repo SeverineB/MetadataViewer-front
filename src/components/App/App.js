@@ -14,7 +14,6 @@ import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
 import Home from '../../containers/Home';
 import NavBar from '../../containers/NavBar';
 import LoginForm from '../../containers/LoginForm';
-import Register from '../../containers/Register';
 import UploadForm from '../../containers/UploadForm';
 import PrivateRoute from '../PrivateRoute';
 import PublicRoute from '../PublicRoute';
@@ -31,12 +30,13 @@ const App = ({ checkIfLogged }) => {
   return (
     <div className="app">
       <NavBar />
-      <h1 className="app-title">Gestionnaire de métadonnées</h1>
+      <div className="app-title">
+        <h1 className="app-title-text">Gestionnaire de métadonnées</h1>
+      </div>
 
       <Switch>
         <Route exact path="/" component={Home} />
         <PublicRoute exact path="/login" component={LoginForm} />
-        <PublicRoute exact path="/register" component={Register} />
         <PrivateRoute exact path="/upload" component={UploadForm} />
         <Route component={Page404} />
       </Switch>

@@ -4,6 +4,9 @@
   margin-top: 0;
   display: flex;
   align-items: center;
+  @include m767() {
+  height: 5em;
+   };
 
   a {
     font-size: 1.2em;
@@ -12,11 +15,11 @@
 }
 
 .bg-light {
-  background-color: #aab6b5!important;
+  background-color: #ffffff;
 }
 .navbar-collapse {
   a {
-    color: #1f1d1d;
+    color: #313847;
     text-decoration: none;
 
     &:hover {

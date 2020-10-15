@@ -1,6 +1,5 @@
 import {
   CHANGE_USER_FIELD,
-  REDIRECT_HOME,
 
 } from '../actions';
 
@@ -18,12 +17,6 @@ const user = (state = initialState, action = {}) => {
       return {
         ...state,
         [action.name]: action.value,
-      };
-
-    case REDIRECT_HOME:
-      return {
-        ...state,
-        redirectHome: action.redirectHome,
       };
     default:
       return state;
