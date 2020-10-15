@@ -48,7 +48,6 @@ const auth = (store) => (next) => (action) => {
           withCredentials: true,
         })
         .then((response) => {
-          Cookies.remove('token');
           store.dispatch(userConnected(false));
         })
         .catch((error) => {
