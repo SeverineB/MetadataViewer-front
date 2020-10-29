@@ -1,4 +1,4 @@
-METADATA VIEWER
+METADATA VIEWER :eyes:
 ===============
 
 Cette application permet de visualiser les métadonnées d'une image que l'on a téléchargée, après s'être inscrit et connecté.
@@ -22,4 +22,10 @@ INSTALLATION
   - yarn
 * Lancement du projet en mode développement
   - yarn start
+* Lancer l'application dans le navigateur
+  - http://localhost:8080
 
+BACKEND
+-------
+
+https://github.com/SeverineB/MetadataViewer-back
