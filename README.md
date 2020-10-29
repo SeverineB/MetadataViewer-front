@@ -1,5 +1,5 @@
-METADATA VIEWER :eyes:
-===============
+:star: METADATA VIEWER :star:
+=============================
 
 ### Description
 
