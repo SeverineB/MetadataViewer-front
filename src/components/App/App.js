@@ -14,6 +14,7 @@ import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
 import Home from '../../containers/Home';
 import NavBar from '../../containers/NavBar';
 import LoginForm from '../../containers/LoginForm';
+import RegisterForm from '../../containers/RegisterForm';
 import UploadForm from '../../containers/UploadForm';
 import PrivateRoute from '../PrivateRoute';
 import PublicRoute from '../PublicRoute';
@@ -37,6 +38,7 @@ const App = ({ checkIfLogged }) => {
       <Switch>
         <Route exact path="/" component={Home} />
         <PublicRoute exact path="/login" component={LoginForm} />
+        <PublicRoute exact path="/register" component={RegisterForm} />
         <PrivateRoute exact path="/upload" component={UploadForm} />
         <Route component={Page404} />
       </Switch>

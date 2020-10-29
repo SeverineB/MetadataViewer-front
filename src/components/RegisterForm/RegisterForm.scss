@@ -1,0 +1,29 @@
+@import 'src/styles/vars';
+
+.register {
+  background-color: #ffffff;
+  border-radius: 0.5em;
+  padding: 2em 0.5em;
+  width: 90vw;
+  position: absolute;
+  margin: 0;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  @include m1200() {
+    width: 25vw;
+   };
+   @include m1600() {
+    top: 50%;
+    width: 20vw;
+   };
+}
+
+.success-message {
+  background-color: #ffffff;
+  width: 90vw;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 0.5em;
+}

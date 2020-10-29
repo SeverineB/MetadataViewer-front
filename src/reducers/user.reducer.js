@@ -1,6 +1,5 @@
 import {
   CHANGE_USER_FIELD,
-
 } from '../actions';
 
 const initialState = {
