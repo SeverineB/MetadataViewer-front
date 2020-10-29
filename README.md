@@ -1,4 +1,4 @@
-METADATA VIEWER :eyes:
+:star: METADATA VIEWER :star:
 ===============
 
 Cette application permet de visualiser les métadonnées d'une image que l'on a téléchargée, après s'être inscrit et connecté.
