@@ -1,9 +1,11 @@
 METADATA VIEWER :eyes:
 ===============
 
+### Description
+
 Cette application permet de visualiser les métadonnées d'une image que l'on a téléchargée, après s'être inscrit et connecté.
 
-TECHNOLOGIES & FRAMEWORKS UTILISES
+### Frameworks & outils utilisés
 ----------------------------------
 
 * [ReactJS](https://fr.reactjs.org/)
@@ -14,8 +16,8 @@ TECHNOLOGIES & FRAMEWORKS UTILISES
 * [Bootstrap](https://react-bootstrap.github.io/)
 * [Exifr](https://www.npmjs.com/package/exifr) // Lecture des métadonnées
 
-INSTALLATION
-------------
+### Installation
+----------------
 
 * Cloner le dépôt (nécessite d'avoir Node installé)
 * Installation des dépendances
@@ -25,7 +27,7 @@ INSTALLATION
 * Lancer l'application dans le navigateur
   - http://localhost:8080
 
-BACKEND
--------
+### Backend
+-----------
 
 https://github.com/SeverineB/MetadataViewer-back
