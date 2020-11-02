@@ -30,6 +30,17 @@
       &--hidden {
         display: none;
       }
+
+      &--empty {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        width: 30em;
+        height: 5em;
+        background-color: #ffffff;
+        color: black;
+        border-radius: 0.2em;
+      }
     }
   }
 }

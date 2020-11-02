@@ -1,6 +1,5 @@
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable no-console */
-import Cookies from 'js-cookie';
 
 import {
   REGISTER,
@@ -12,6 +11,7 @@ import {
   userConnected,
   userDisconnected,
   registerSuccess,
+  registerFailed,
 } from '../actions';
 
 import api from '../services/api';
@@ -31,11 +31,17 @@ const auth = (store) => (next) => (action) => {
       })
         .then((response) => {
           console.log('utilisateur enregistré dans la base de données !');
-          store.dispatch(registerSuccess(true));
+          console.log('RESPONSE AFTER REGISTER ', response);
+          if (response.status === 200) {
+            store.dispatch(registerSuccess(true));
+          }
         })
         .catch((error) => {
           console.log('impossible de créer le compte', error.message);
-          store.dispatch(registerSuccess(false));
+          store.dispatch(registerFailed(error));
+        })
+        .finally(() => {
+          store.dispatch(finishLoading());
         });
       next(action);
       break;
@@ -56,11 +62,13 @@ const auth = (store) => (next) => (action) => {
           localStorage.setItem('username', response.data.session.username);
           store.dispatch(saveCurrentUser);
           store.dispatch(userConnected(true));
-          store.dispatch(finishLoading());
         })
         .catch((error) => {
           console.log('impossible de se connecter', error.message);
           store.dispatch(userDisconnected());
+        })
+        .finally(() => {
+          store.dispatch(finishLoading());
         });
       next(action);
       break;

@@ -6,9 +6,9 @@ import { changeFile, changeUrl, uploadFile } from '../actions';
 
 const mapStateToProps = (state) => ({
   isLogged: state.auth.isLogged,
-  loading: state.upload.isLogged,
-  file: state.upload.picture,
-  fileUrl: state.upload.fileUrl,
+  loading: state.image.isLogged,
+  file: state.image.file,
+  fileUrl: state.image.fileUrl,
 });
 
 const mapDispatchToProps = (dispatch) => ({

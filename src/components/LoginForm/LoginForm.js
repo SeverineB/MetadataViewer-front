@@ -68,7 +68,7 @@ const LoginForm = ({
 
   return (
     <div>
-      <h2 className="register-form-title">Connectez-vous à votre compte</h2>
+      <h2 className="login-form-title">Connectez-vous à votre compte</h2>
       {!loading && (
         <Form className="login-form" onSubmit={handleSubmit}>
           <Form.Group controlId="formBasicEmail">

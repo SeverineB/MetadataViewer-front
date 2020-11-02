@@ -1,6 +1,9 @@
+/* eslint-disable no-underscore-dangle */
 import React from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
+
+import { baseURL, urlServer } from '../../../constants/constants';
 
 // import styles
 import './Picture.scss';
@@ -10,17 +13,21 @@ import deleteIcon from '../../../assets/icons/x-square.svg';
 const Picture = ({
   file,
   isLogged,
+  isDeleted,
+  saveFileToDelete,
+  deleteFile,
+  deletePictureOnScreen,
 }) => {
   const fileToUrl = () => {
-    const imageUrl = `http://localhost:3001/${file.image.imagePath}`;
+    const imageUrl = `${urlServer}/${file.image.imagePath}`;
     return imageUrl;
   };
 
   const { name, size, type } = file.metadata;
 
-  const deletePicture = () => {
+  /* const deletePicture = () => {
     // axios request to delete a picture
-    axios.delete(`http://localhost:3001/api/images/delete/${file.image._id}`,
+    axios.delete(`${baseURL}images/delete/${file.image._id}`,
       {
         withCredentials: true,
       })
@@ -33,10 +40,14 @@ const Picture = ({
       .catch((error) => {
         console.log(error);
       });
-  };
+  }; */
 
   const handleDelete = () => {
-    deletePicture();
+    /* deletePicture(); */
+    saveFileToDelete(file);
+    deleteFile();
+    const idToDelete = file.image._id;
+    deletePictureOnScreen(idToDelete);
   };
 
   // add style to the exifMetadata object
@@ -48,7 +59,7 @@ const Picture = ({
 
   return (
     <>
-      <div className="picture-item">
+      <div className={!isDeleted ? 'picture-item' : 'picture-item--deleted'}>
         {isLogged
           && (
             <button type="submit" className="picture-item-delete" onClick={handleDelete}>
@@ -80,7 +91,11 @@ const Picture = ({
           </div>
         </div>
       </div>
-
+      {isDeleted && (
+        <div>
+          <p>Image bien supprimée</p>
+        </div>
+      )}
     </>
   );
 };
@@ -88,6 +103,10 @@ const Picture = ({
 Picture.propTypes = {
   file: PropTypes.object.isRequired,
   isLogged: PropTypes.bool.isRequired,
+  isDeleted: PropTypes.bool.isRequired,
+  deleteFile: PropTypes.func.isRequired,
+  saveFileToDelete: PropTypes.func.isRequired,
+  deletePictureOnScreen: PropTypes.func.isRequired,
 };
 
 export default Picture;

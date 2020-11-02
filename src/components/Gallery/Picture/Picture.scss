@@ -25,6 +25,10 @@
     border-radius: 0.2em;
   }
 
+  &--deleted {
+    display: none;
+  }
+
    &-image {
     max-height: 15em;
     overflow: hidden;

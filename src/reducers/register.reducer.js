@@ -3,14 +3,16 @@ import {
   CHANGE_USER_FIELD_REGISTER,
   REGISTER_SUCCESS,
   REGISTER_FAILED,
+  FINISH_LOADING,
 } from '../actions';
 
 const initialState = {
   username: '',
   email: '',
   password: '',
-  loading: true,
+  loading: false,
   isSignedUp: false,
+  isFailed: false,
   error: {},
 };
 
@@ -30,12 +32,19 @@ const user = (state = initialState, action = {}) => {
       return {
         ...state,
         isSignedUp: true,
-        loading: false,
+        loading: true,
       };
     case REGISTER_FAILED:
       return {
         ...state,
         error: action.error,
+        isSignedUp: false,
+        isFailed: true,
+        loading: true,
+      };
+    case FINISH_LOADING:
+      return {
+        ...state,
         loading: false,
       };
     default:

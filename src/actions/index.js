@@ -1,4 +1,4 @@
-export * from './upload.actions';
+export * from './image.actions';
 export * from './user.actions';
 export * from './auth.actions';
 export * from './error.actions';
@@ -10,7 +10,6 @@ export const CHANGE_USER_FIELD = 'CHANGE_USER_FIELD';
 export const CHANGE_USER_FIELD_REGISTER = 'CHANGE_USER_FIELD_REGISTER';
 export const REGISTER_SUCCESS = 'REGISTER_SUCCESS';
 export const REGISTER_FAILED = 'REGISTER_FAILED';
-
 
 // ACTION CREATOR
 

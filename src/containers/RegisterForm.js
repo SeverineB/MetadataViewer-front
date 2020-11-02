@@ -9,8 +9,9 @@ const mapStateToProps = (state) => ({
   email: state.register.email,
   password: state.register.password,
   isSignedUp: state.register.isSignedUp,
+  isFailed: state.register.isFailed,
   error: state.register.error,
-  loading: state.auth.loading,
+  loading: state.register.loading,
 });
 
 const mapDispatchToProps = (dispatch) => ({

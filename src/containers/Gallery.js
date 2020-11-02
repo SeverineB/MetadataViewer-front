@@ -2,13 +2,20 @@ import { connect } from 'react-redux';
 
 import Gallery from '../components/Gallery/Gallery';
 
+import { fetchFiles } from '../actions';
+
 const mapStateToProps = (state) => ({
-  files: state.upload.files,
+  files: state.image.files,
   isLogged: state.auth.isLogged,
   errors: state.error.errors,
+  loading: state.image.loading,
 });
 
-const mapDispatchToProps = () => ({});
+const mapDispatchToProps = (dispatch) => ({
+  fetchFiles: () => {
+    dispatch(fetchFiles());
+  },
+});
 
 export default connect(
   mapStateToProps,

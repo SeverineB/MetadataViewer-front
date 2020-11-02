@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Button, Form } from 'react-bootstrap';
 import { useHistory, Link } from 'react-router-dom';
+import Loader from 'react-loader-spinner';
 
 import './RegisterForm.scss';
 
@@ -12,10 +13,13 @@ const RegisterForm = ({
   username,
   register,
   isSignedUp,
+  isFailed,
   loading,
   error,
 }) => {
   console.log('IS SIGNED UP DANS REGISTER FORM ', isSignedUp);
+  console.log('LOADING REGISTER DANS REGISTER FORM ', loading);
+  console.log('IS FAILED REGISTER DANS REGISTER FORM ', isFailed);
   // check the value of the field to update corresponding state
   const handleChange = (evt) => {
     evt.preventDefault();
@@ -29,9 +33,9 @@ const RegisterForm = ({
 
   return (
     <div className="register">
-      {!isSignedUp && (
+      <h2 className="register-form-title">Créez un compte</h2>
+      {!isSignedUp && !loading && !isFailed && (
         <>
-          <h2 className="register-form-title">S'enregistrer</h2>
           <Form className="register-form" onSubmit={handleSubmit}>
             <Form.Group controlId="formBasicUsername">
               <Form.Label>Nom d'utilisateur</Form.Label>
@@ -69,11 +73,26 @@ const RegisterForm = ({
           </Form>
         </>
       )}
-      {isSignedUp && !loading && (
+      {isSignedUp && !loading && !isFailed && (
         <div className="success-message">
-          <p>Vous êtes bien enregistré !</p>
+          <p>Votre compte est bien créé !</p>
           <p>Vous pouvez maintenant vous connecter</p>
           <Link to="/login">connexion</Link>
+        </div>
+      )}
+      {loading && (
+        <Loader
+          type="Circles"
+          color="#5bf8c9"
+          height={40}
+          width={40}
+          className="register-loader"
+        />
+      )}
+      {isFailed && (
+        <div className="error-message">
+          <p>Impossible de créer votre compte</p>
+          <p>{error.message}</p>
         </div>
       )}
     </div>
@@ -88,6 +107,12 @@ RegisterForm.propTypes = {
   register: PropTypes.func.isRequired,
   loading: PropTypes.bool.isRequired,
   isSignedUp: PropTypes.bool.isRequired,
+  isFailed: PropTypes.bool.isRequired,
+  error: PropTypes.objectOf(
+    PropTypes.shape({
+      message: PropTypes.string.isRequired,
+    }),
+  ).isRequired,
 };
 
 export default RegisterForm;

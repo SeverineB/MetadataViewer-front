@@ -10,15 +10,18 @@ import {
   finishLoading,
   getErrors,
   UPLOAD_FILE,
+  DELETE_FILE,
+  fetchFiles,
 } from '../actions';
 
 import api from '../services/api';
 
-const upload = (store) => (next) => (action) => {
+const image = (store) => (next) => (action) => {
   switch (action.type) {
     case FETCH_FILES: {
       api.get('images')
         .then((response) => {
+          console.log('response.data dans fetchfiles ', response.data);
           store.dispatch(saveFiles(response.data));
           if (response.data.metadata) {
             store.dispatch(saveMetadata(response.data.metadata));
@@ -37,7 +40,7 @@ const upload = (store) => (next) => (action) => {
     case UPLOAD_FILE: {
       const state = store.getState();
       const formData = new FormData();
-      formData.append('image', state.upload.file);
+      formData.append('image', state.image.file);
       api.post('images/upload', formData,
         {
           headers: {
@@ -47,7 +50,7 @@ const upload = (store) => (next) => (action) => {
         })
         .then((response) => {
           console.log('RES DANS UPLOAD :', response.data);
-          store.dispatch(saveFile(response.data));
+          store.dispatch(saveFile({ ...response.data }));
           store.dispatch(saveMetadata({ ...response.data }));
         })
         .catch((error) => {
@@ -59,8 +62,27 @@ const upload = (store) => (next) => (action) => {
         });
       break;
     }
+
+    case DELETE_FILE: {
+      const state = store.getState();
+      const id = state.image.file.image._id;
+      api.delete(`images/delete/${id}`,
+        {
+          withCredentials: true,
+        })
+        .then((response) => {
+          if (response.status === 200) {
+            console.log('delete ok');
+            fetchFiles();
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+      break;
+    }
     default:
       next(action);
   }
 };
-export default upload;
+export default image;
