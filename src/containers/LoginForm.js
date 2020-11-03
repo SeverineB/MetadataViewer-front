@@ -2,12 +2,17 @@ import { connect } from 'react-redux';
 
 import LoginForm from '../components/LoginForm/LoginForm';
 
-import { changeUserField, setLogErrors, clearLogErrors, login } from '../actions';
+import {
+  changeUserField,
+  setLogErrors,
+  clearLogErrors,
+  login,
+} from '../actions';
 
 const mapStateToProps = (state) => ({
   email: state.user.email,
   password: state.user.password,
-  loading: state.user.loading,
+  isLoading: state.auth.isLoading,
   errors: state.error.logErrors,
 });
 

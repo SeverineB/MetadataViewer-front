@@ -4,14 +4,18 @@ import {
   SAVE_USER,
   USER_CONNECTED,
   USER_DISCONNECTED,
+  LOGIN_SUCCESS,
+  LOGIN_FAILED,
+  FINISH_LOADING,
 } from '../actions';
 
 const initialState = {
   session: {},
   id: null,
-  loading: false,
+  isLoading: false,
   isLogged: false,
   isDisconnected: false,
+  error: {},
 };
 
 const auth = (state = initialState, action = {}) => {
@@ -19,14 +23,14 @@ const auth = (state = initialState, action = {}) => {
     case LOGIN:
       return {
         ...state,
-        loading: true,
+        isLoading: true,
         isLogged: true,
       };
     case LOGOUT:
       return {
         ...state,
         isLogged: false,
-        loading: true,
+        isLoading: true,
       };
     case SAVE_USER:
       return {
@@ -38,10 +42,24 @@ const auth = (state = initialState, action = {}) => {
           username: action.sessionUsername,
         },
       };
-    case USER_CONNECTED:
+    case LOGIN_SUCCESS:
       return {
         ...state,
-        isLogged: action.isLogged,
+        isLogged: true,
+        isLoading: true,
+      };
+    case LOGIN_FAILED:
+      return {
+        ...state,
+        error: action.error,
+        isLogged: false,
+        isFailed: true,
+        isLoading: true,
+      };
+    case FINISH_LOADING:
+      return {
+        ...state,
+        isLoading: false,
       };
     case USER_DISCONNECTED:
       return {

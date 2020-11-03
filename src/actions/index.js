@@ -8,8 +8,6 @@ export * from './error.actions';
 export const CHANGE_FIELD = 'CHANGE_FIELD';
 export const CHANGE_USER_FIELD = 'CHANGE_USER_FIELD';
 export const CHANGE_USER_FIELD_REGISTER = 'CHANGE_USER_FIELD_REGISTER';
-export const REGISTER_SUCCESS = 'REGISTER_SUCCESS';
-export const REGISTER_FAILED = 'REGISTER_FAILED';
 
 // ACTION CREATOR
 
@@ -31,12 +29,3 @@ export const changeUserFieldRegister = (value, name) => ({
   name,
 });
 
-export const registerSuccess = (isSignedUp) => ({
-  type: REGISTER_SUCCESS,
-  isSignedUp,
-});
-
-export const registerFailed = (error) => ({
-  type: REGISTER_FAILED,
-  error,
-});

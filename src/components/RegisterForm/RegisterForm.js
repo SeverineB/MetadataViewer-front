@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Button, Form } from 'react-bootstrap';
@@ -15,7 +16,7 @@ const RegisterForm = ({
   register,
   isSignedUp,
   isFailed,
-  loading,
+  isLoading,
   error,
   errors,
   setErrors,
@@ -24,7 +25,7 @@ const RegisterForm = ({
   useEffect(() => {
     clearErrors();
   }, []);
-  
+
   // Check data before submit form
 
   const checkUsername = (value) => {
@@ -107,7 +108,7 @@ const RegisterForm = ({
           <p>{error}</p>
         </div>
       )}
-      {!isSignedUp && !loading && (
+      {!isSignedUp && !isLoading && (
         <>
           <Form className="register-form" onSubmit={handleSubmit}>
             <h2 className="register-form-title">Créez votre compte</h2>
@@ -163,17 +164,17 @@ const RegisterForm = ({
           </Form>
         </>
       )}
-      {isSignedUp && !loading && !isFailed && (
+      {isSignedUp && !isLoading && !isFailed && (
         <div className="success-message">
           <p>Votre compte est bien créé !</p>
           <p>Vous pouvez maintenant vous connecter</p>
           <Link to="/login">connexion</Link>
         </div>
       )}
-      {loading && (
+      {isLoading && (
         <Loader
           type="Circles"
-          color="#5bf8c9"
+          color="#c0ded6"
           height={40}
           width={40}
           className="register-loader"
@@ -189,7 +190,7 @@ RegisterForm.propTypes = {
   email: PropTypes.string.isRequired,
   password: PropTypes.string.isRequired,
   register: PropTypes.func.isRequired,
-  loading: PropTypes.bool.isRequired,
+  isLoading: PropTypes.bool.isRequired,
   isSignedUp: PropTypes.bool.isRequired,
   isFailed: PropTypes.bool.isRequired,
   setErrors: PropTypes.func.isRequired,

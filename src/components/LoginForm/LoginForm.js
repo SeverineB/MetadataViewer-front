@@ -13,7 +13,7 @@ const LoginForm = ({
   email,
   password,
   login,
-  loading,
+  isLoading,
   errors,
   setErrors,
   clearErrors,
@@ -70,10 +70,6 @@ const LoginForm = ({
     }
   };
 
-  const handleClear = (evt) => {
-    changeUserField('', evt.target.name);
-  };
-
   const handleSubmit = (evt) => {
     evt.preventDefault();
     if (checkEmail && checkPassword) {
@@ -84,7 +80,7 @@ const LoginForm = ({
 
   return (
     <div className="login">
-      {!loading && (
+      {!isLoading && (
         <Form className="login-form" onSubmit={handleSubmit}>
           <h2 className="login-form-title">Connectez-vous à votre compte</h2>
           <Form.Group controlId="formBasicEmail">
@@ -95,7 +91,6 @@ const LoginForm = ({
               name="email"
               value={email}
               onChange={handleChange}
-              onBlur={handleClear}
               className={errors.email ? 'is-invalid' : ''}
             />
           </Form.Group>
@@ -126,10 +121,10 @@ const LoginForm = ({
           </div>
         </Form>
       )}
-      {loading && (
+      {isLoading && (
         <Loader
           type="Circles"
-          color="#00BFFF"
+          color="#c0ded6"
           height={40}
           width={40}
         />
@@ -143,7 +138,7 @@ LoginForm.propTypes = {
   password: PropTypes.string.isRequired,
   changeUserField: PropTypes.func.isRequired,
   login: PropTypes.func.isRequired,
-  loading: PropTypes.bool.isRequired,
+  isLoading: PropTypes.bool.isRequired,
   setErrors: PropTypes.func.isRequired,
   clearErrors: PropTypes.func.isRequired,
   errors: PropTypes.objectOf(

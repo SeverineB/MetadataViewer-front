@@ -11,30 +11,29 @@ import Gallery from '../../containers/Gallery';
 const Home = ({
   fetchFiles,
   isLogged,
-  loading,
+  isLoading,
 }) => {
   useEffect(() => {
     console.log('je check les images en arrivant sur home');
     fetchFiles();
   }, []);
 
-  console.log('LOADING UPLOAD DANS HOME', loading);
-
   // To display username
-  /* const currentUsername = localStorage.getItem('username'); */
+  const currentUsername = localStorage.getItem('username');
 
   return (
     <div className="home-page">
-      {loading && (
+      {isLoading && (
         <Loader
           type="Circles"
-          color="#5bf8c9"
+          color="#c0ded6"
           height={40}
           width={40}
         />
       )}
-      {isLogged && !loading && (
+      {isLogged && !isLoading && (
         <div className="home-page-message">
+          <p className="home-page-message-welcome">Vous êtes bien connecté(e) {currentUsername}</p>
           <p className="home-page-message-text">Vous pouvez maintenant télécharger des images et les supprimer</p>
         </div>
       )}
@@ -44,7 +43,7 @@ const Home = ({
 };
 
 Home.propTypes = {
-  loading: PropTypes.bool.isRequired,
+  isLoading: PropTypes.bool.isRequired,
   isLogged: PropTypes.bool.isRequired,
   fetchFiles: PropTypes.func.isRequired,
 };

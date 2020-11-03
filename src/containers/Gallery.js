@@ -9,7 +9,7 @@ const mapStateToProps = (state) => ({
   isLogged: state.auth.isLogged,
   isDeleted: state.image.isDeleted,
   errors: state.error.errors,
-  loading: state.image.loading,
+  isLoading: state.image.isLoading,
 });
 
 const mapDispatchToProps = (dispatch) => ({

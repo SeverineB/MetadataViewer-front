@@ -8,10 +8,11 @@ import {
   CHECK_IF_LOGGED,
   saveUser,
   finishLoading,
-  userConnected,
-  userDisconnected,
   registerSuccess,
   registerFailed,
+  loginSuccess,
+  loginFailed,
+  userDisconnected,
 } from '../actions';
 
 import api from '../services/api';
@@ -30,7 +31,6 @@ const auth = (store) => (next) => (action) => {
         withCredentials: true,
       })
         .then((response) => {
-          console.log('utilisateur enregistré dans la base de données !');
           console.log('RESPONSE AFTER REGISTER ', response);
           if (response.status === 200) {
             store.dispatch(registerSuccess(true));
@@ -58,14 +58,12 @@ const auth = (store) => (next) => (action) => {
       })
         .then((response) => {
           console.log('RESPONSE DATA dans login', response.data);
-          const saveCurrentUser = saveUser({ ...response.data });
           localStorage.setItem('username', response.data.session.username);
-          store.dispatch(saveCurrentUser);
-          store.dispatch(userConnected(true));
+          store.dispatch(saveUser({ ...response.data }));
+          store.dispatch(loginSuccess(true));
         })
         .catch((error) => {
-          console.log('impossible de se connecter', error.message);
-          store.dispatch(userDisconnected());
+          store.dispatch(loginFailed(error.response.data.message));
         })
         .finally(() => {
           store.dispatch(finishLoading());
@@ -81,7 +79,7 @@ const auth = (store) => (next) => (action) => {
         })
         .then((response) => {
           localStorage.removeItem('username');
-          store.dispatch(userConnected(false));
+          store.dispatch(loginSuccess(false));
         })
         .catch((error) => {
           console.log('Impossible de déconnecter l\'utilisateur', error.message);
@@ -97,7 +95,7 @@ const auth = (store) => (next) => (action) => {
         })
         .then((response) => {
           console.log('je suis bien connecté');
-          store.dispatch(userConnected(true));
+          store.dispatch(loginSuccess(true));
         })
         .catch((error) => {
           console.log('impossible de se connecter', error.message);

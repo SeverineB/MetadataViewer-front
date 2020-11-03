@@ -6,13 +6,13 @@ import {
   saveFiles,
   saveMetadata,
   saveFile,
-  userConnected,
   finishLoading,
   getErrors,
   UPLOAD_FILE,
+  uploadSuccess,
+  uploadFailed,
   DELETE_FILE,
   deleteSuccess,
-  fetchFiles,
 } from '../actions';
 
 import api from '../services/api';
@@ -29,11 +29,12 @@ const image = (store) => (next) => (action) => {
           }
         })
         .catch((error) => {
-          store.dispatch(userConnected(false));
           if (error) {
-            store.dispatch(getErrors(error));
-            store.dispatch(finishLoading());
+            store.dispatch(getErrors(error.response.data.message));
           }
+        })
+        .finally(() => {
+          store.dispatch(finishLoading());
         });
       break;
     }
@@ -50,13 +51,13 @@ const image = (store) => (next) => (action) => {
           withCredentials: true,
         })
         .then((response) => {
-          console.log('RES DANS UPLOAD :', response.data);
           store.dispatch(saveFile({ ...response.data }));
           store.dispatch(saveMetadata({ ...response.data }));
+          store.dispatch(uploadSuccess());
         })
         .catch((error) => {
-          console.log('il y a une erreur !');
-          store.dispatch(getErrors(error));
+          store.dispatch(getErrors(error.response.data.message));
+          store.dispatch(uploadFailed());
         })
         .finally(() => {
           store.dispatch(finishLoading());

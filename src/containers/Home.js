@@ -5,7 +5,7 @@ import { fetchFiles } from '../actions';
 
 const mapStateToProps = (state) => ({
   isLogged: state.auth.isLogged,
-  loading: state.image.loading,
+  isLoading: state.image.isLoading,
 });
 
 const mapDispatchToProps = (dispatch) => ({

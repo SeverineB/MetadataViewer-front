@@ -17,7 +17,7 @@ const initialState = {
   file: {},
   fileUrl: '',
   metadata: {},
-  loading: true,
+  isLoading: true,
   isDeleted: false,
 };
 
@@ -26,7 +26,7 @@ const imageReducer = (state = initialState, action = {}) => {
     case SAVE_FILES:
       return {
         ...state,
-        loading: false,
+        isLoading: false,
         files: action.files,
       };
     case SAVE_METADATA:
@@ -49,6 +49,7 @@ const imageReducer = (state = initialState, action = {}) => {
       return {
         ...state,
         files: [...state.files, action.file],
+        isLoading: true,
       };
     case SAVE_FILE_TO_DELETE:
       return {
@@ -65,12 +66,11 @@ const imageReducer = (state = initialState, action = {}) => {
         files: [
           ...state.files.filter((file) => file.image._id !== action.id),
         ],
-        isDeleted: true,
       };
     case FINISH_LOADING:
       return {
         ...state,
-        loading: false,
+        isLoading: false,
       };
     case CHANGE_FILE:
       return {

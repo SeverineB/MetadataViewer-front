@@ -78,7 +78,6 @@ const Picture = ({
 Picture.propTypes = {
   file: PropTypes.object.isRequired,
   isLogged: PropTypes.bool.isRequired,
-  isDeleted: PropTypes.bool.isRequired,
   deleteFile: PropTypes.func.isRequired,
   saveFileToDelete: PropTypes.func.isRequired,
   deletePictureOnScreen: PropTypes.func.isRequired,

@@ -11,7 +11,7 @@ const mapStateToProps = (state) => ({
   isSignedUp: state.register.isSignedUp,
   isFailed: state.register.isFailed,
   error: state.register.error,
-  loading: state.register.loading,
+  isLoading: state.register.isLoading,
   errors: state.error.regErrors,
 });
 

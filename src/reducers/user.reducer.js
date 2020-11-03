@@ -6,8 +6,6 @@ const initialState = {
   username: '',
   email: '',
   password: '',
-  loading: false,
-  redirectHome: false,
 };
 
 const user = (state = initialState, action = {}) => {

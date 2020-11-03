@@ -10,7 +10,7 @@ const initialState = {
   username: '',
   email: '',
   password: '',
-  loading: false,
+  isLoading: false,
   isSignedUp: false,
   isFailed: false,
   error: {},
@@ -26,13 +26,13 @@ const user = (state = initialState, action = {}) => {
     case REGISTER:
       return {
         ...state,
-        loading: true,
+        isLoading: true,
       };
     case REGISTER_SUCCESS:
       return {
         ...state,
         isSignedUp: true,
-        loading: true,
+        isLoading: true,
       };
     case REGISTER_FAILED:
       return {
@@ -40,12 +40,12 @@ const user = (state = initialState, action = {}) => {
         error: action.error,
         isSignedUp: false,
         isFailed: true,
-        loading: true,
+        isLoading: true,
       };
     case FINISH_LOADING:
       return {
         ...state,
-        loading: false,
+        isLoading: false,
       };
     default:
       return state;
