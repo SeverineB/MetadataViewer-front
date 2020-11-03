@@ -1,6 +1,5 @@
 import {
   LOGIN,
- /*  REGISTER, */
   LOGOUT,
   SAVE_USER,
   USER_CONNECTED,
@@ -10,7 +9,6 @@ import {
 const initialState = {
   session: {},
   id: null,
-  /* username: '', */
   loading: false,
   isLogged: false,
   isDisconnected: false,
@@ -24,11 +22,6 @@ const auth = (state = initialState, action = {}) => {
         loading: true,
         isLogged: true,
       };
-/*     case REGISTER:
-      return {
-        ...state,
-        loading: true,
-      }; */
     case LOGOUT:
       return {
         ...state,

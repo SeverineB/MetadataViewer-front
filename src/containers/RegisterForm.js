@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 
 import RegisterForm from '../components/RegisterForm/RegisterForm';
 
-import { changeUserFieldRegister, register } from '../actions';
+import { changeUserFieldRegister, setRegErrors, clearRegErrors, register } from '../actions';
 
 const mapStateToProps = (state) => ({
   username: state.register.username,
@@ -12,11 +12,18 @@ const mapStateToProps = (state) => ({
   isFailed: state.register.isFailed,
   error: state.register.error,
   loading: state.register.loading,
+  errors: state.error.regErrors,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   changeUserFieldRegister: (value, name) => {
     dispatch(changeUserFieldRegister(value, name));
+  },
+  setErrors: (id, value) => {
+    dispatch(setRegErrors(id, value));
+  },
+  clearErrors: () => {
+    dispatch(clearRegErrors());
   },
   register: () => {
     dispatch(register());

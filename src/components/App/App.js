@@ -19,6 +19,7 @@ import UploadForm from '../../containers/UploadForm';
 import PrivateRoute from '../PrivateRoute';
 import PublicRoute from '../PublicRoute';
 import Page404 from '../Page404/Page404';
+import Footer from '../Footer/Footer';
 
 // == Composant
 const App = ({ checkIfLogged }) => {
@@ -32,7 +33,7 @@ const App = ({ checkIfLogged }) => {
     <div className="app">
       <NavBar />
       <div className="app-title">
-        <h1 className="app-title-text">Gestionnaire de métadonnées</h1>
+        <h1 className="app-title-text">The Metadata Viewer</h1>
       </div>
 
       <Switch>
@@ -42,6 +43,7 @@ const App = ({ checkIfLogged }) => {
         <PrivateRoute exact path="/upload" component={UploadForm} />
         <Route component={Page404} />
       </Switch>
+      <Footer />
     </div>
   );
 };

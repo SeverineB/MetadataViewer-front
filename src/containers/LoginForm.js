@@ -2,13 +2,13 @@ import { connect } from 'react-redux';
 
 import LoginForm from '../components/LoginForm/LoginForm';
 
-import { changeUserField, setErrors, login } from '../actions';
+import { changeUserField, setLogErrors, clearLogErrors, login } from '../actions';
 
 const mapStateToProps = (state) => ({
   email: state.user.email,
   password: state.user.password,
   loading: state.user.loading,
-  errors: state.error.formErrors,
+  errors: state.error.logErrors,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -18,8 +18,11 @@ const mapDispatchToProps = (dispatch) => ({
   login: () => {
     dispatch(login());
   },
-  setErrors: (value, id) => {
-    dispatch(setErrors(value, id));
+  setErrors: (id, value) => {
+    dispatch(setLogErrors(id, value));
+  },
+  clearErrors: () => {
+    dispatch(clearLogErrors());
   },
 });
 

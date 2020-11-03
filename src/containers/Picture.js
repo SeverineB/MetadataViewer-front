@@ -2,7 +2,12 @@ import { connect } from 'react-redux';
 
 import Picture from '../components/Gallery/Picture/Picture';
 
-import { changeFile, saveFileToDelete, deletePictureOnScreen, deleteFile } from '../actions';
+import {
+  changeFile,
+  saveFileToDelete,
+  deletePictureOnScreen,
+  deleteFile,
+} from '../actions';
 
 const mapStateToProps = (state) => ({
   isLogged: state.auth.isLogged,
@@ -10,8 +15,8 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  changeFile: () => {
-    dispatch(changeFile());
+  changeFile: (file) => {
+    dispatch(changeFile(file));
   },
   saveFileToDelete: (file) => {
     dispatch(saveFileToDelete(file));

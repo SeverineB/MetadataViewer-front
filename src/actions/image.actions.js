@@ -43,9 +43,8 @@ export const saveFileToDelete = (file) => ({
   file,
 });
 
-export const uploadFile = (file) => ({
+export const uploadFile = () => ({
   type: UPLOAD_FILE,
-  file,
 });
 
 export const deleteFile = () => ({

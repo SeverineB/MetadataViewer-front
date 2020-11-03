@@ -3,11 +3,18 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 
-import './Gallery.scss';
-
 import Picture from '../../containers/Picture';
 
-const Gallery = ({ files, errors, fetchFiles, loading }) => {
+import './Gallery.scss';
+import deleteIcon from '../../assets/icons/cancel.png';
+
+const Gallery = ({
+  files,
+  errors,
+  fetchFiles,
+  loading,
+  isDeleted,
+}) => {
   console.log('errors vaut ', errors);
   console.log('files vaut ', files);
 
@@ -17,6 +24,15 @@ const Gallery = ({ files, errors, fetchFiles, loading }) => {
 
   return (
     <>
+      {/* <div className={isDeleted ? 'delete-success' : 'delete-success--hidden'}>
+        <p className="delete-success-message">
+          L'image a bien été supprimée
+        </p>
+        <button type="submit" className="picture-item-delete">
+          <img src={deleteIcon} alt="cancel" />
+          <p>x</p>
+        </button>
+      </div> */}
       <div className="pictures-gallery-list">
         <div className={errors && errors.message ? 'error-message' : 'error-message--hidden'}>
           <p>{errors.message}</p>
@@ -40,6 +56,7 @@ const Gallery = ({ files, errors, fetchFiles, loading }) => {
 Gallery.propTypes = {
   isLogged: PropTypes.bool.isRequired,
   loading: PropTypes.bool.isRequired,
+  isDeleted: PropTypes.bool.isRequired,
   fetchFiles: PropTypes.func.isRequired,
   errors: PropTypes.objectOf(
     PropTypes.shape({

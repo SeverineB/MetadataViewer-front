@@ -11,6 +11,7 @@ import {
   getErrors,
   UPLOAD_FILE,
   DELETE_FILE,
+  deleteSuccess,
   fetchFiles,
 } from '../actions';
 
@@ -73,7 +74,6 @@ const image = (store) => (next) => (action) => {
         .then((response) => {
           if (response.status === 200) {
             console.log('delete ok');
-            fetchFiles();
           }
         })
         .catch((error) => {

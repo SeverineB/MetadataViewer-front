@@ -1,7 +1,8 @@
 /* eslint-disable no-console */
-import React ,{ useState } from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Button, Form } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 import Loader from 'react-loader-spinner';
 import * as EmailValidator from 'email-validator';
 
@@ -13,49 +14,64 @@ const LoginForm = ({
   password,
   login,
   loading,
+  errors,
+  setErrors,
+  clearErrors,
 }) => {
-  const [errorEmail, setErrorEmail] = useState('');
-  const [errorPassword, setErrorPassword] = useState('');
+  useEffect(() => {
+    clearErrors();
+  }, []);
+
+  // Check data before submit form
+
+  const checkEmail = (value) => {
+    if (value.length < 1) {
+      setErrors('email', 'L\'email doit être renseigné');
+    }
+    else if (!EmailValidator.validate(value)) {
+      setErrors('email', 'Le format de l\'email n\'est pas valide');
+    }
+    else {
+      setErrors('email', '');
+    }
+    return true;
+  };
+
+  const checkPassword = (value) => {
+    if (value.length < 1) {
+      setErrors('password', 'Le mot de passe doit être renseigné');
+    }
+    else if (value.length > 0 && value.length < 5) {
+      setErrors('password', 'Le mot de passe doit contenir au moins 5 caractères');
+    }
+    else if (!/[A-Z]/.test(value)) {
+      setErrors('password', 'Le mot de passe doit contenir au moins 1 majuscule');
+    }
+    else if (!/[0-9]/.test(value)) {
+      setErrors('password', 'Le mot de passe doit contenir au moins 1 chiffre');
+    }
+    else {
+      setErrors('password', '');
+    }
+    return true;
+  };
 
   const handleChange = (evt) => {
     evt.preventDefault();
     changeUserField(evt.target.value, evt.target.name);
+    switch (evt.target.name) {
+      case 'email':
+        checkEmail(evt.target.value);
+        break;
+      case 'password':
+        checkPassword(evt.target.value);
+        break;
+      default:
+    }
   };
 
-  // Check before sending data
-
-  const checkEmail = (evt) => {
-    const mail = evt.target.value;
-    if (mail.length < 1) {
-      setErrorEmail('L\'email doit être renseigné');
-    }
-    else if (!EmailValidator.validate(mail)) {
-      setErrorEmail('Le format de l\'email n\'est pas valide');
-    }
-    else {
-      setErrorEmail('');
-    }
-    return true;
-  };
-
-  const checkPassword = (evt) => {
-    const pwd = evt.target.value;
-    if (pwd.length < 1) {
-      setErrorPassword('Le mot de passe doit être renseigné');
-    }
-    else if (pwd > 0 && pwd.length < 5) {
-      setErrorPassword('Le mot de passe doit contenir au moins 5 caractères');
-    }
-    else if (!/[A-Z]/.test(pwd)) {
-      setErrorPassword('Le mot de passe doit contenir au moins 1 majuscule');
-    }
-    else if (!/[0-9]/.test(pwd)) {
-      setErrorPassword('Le mot de passe doit contenir au moins 1 chiffre');
-    }
-    else {
-      setErrorPassword('');
-    }
-    return true;
+  const handleClear = (evt) => {
+    changeUserField('', evt.target.name);
   };
 
   const handleSubmit = (evt) => {
@@ -67,10 +83,10 @@ const LoginForm = ({
   };
 
   return (
-    <div>
-      <h2 className="login-form-title">Connectez-vous à votre compte</h2>
+    <div className="login">
       {!loading && (
         <Form className="login-form" onSubmit={handleSubmit}>
+          <h2 className="login-form-title">Connectez-vous à votre compte</h2>
           <Form.Group controlId="formBasicEmail">
             <Form.Label>Adresse email</Form.Label>
             <Form.Control
@@ -79,11 +95,12 @@ const LoginForm = ({
               name="email"
               value={email}
               onChange={handleChange}
-              onBlur={checkEmail}
+              onBlur={handleClear}
+              className={errors.email ? 'is-invalid' : ''}
             />
           </Form.Group>
-          <div className="error-mail">
-            {errorEmail}
+          <div className="error-email">
+            {errors.email}
           </div>
 
           <Form.Group controlId="formBasicPassword">
@@ -94,15 +111,19 @@ const LoginForm = ({
               name="password"
               value={password}
               onChange={handleChange}
-              onBlur={checkPassword}
+              className={errors.password ? 'is-invalid' : ''}
             />
           </Form.Group>
           <div className="error-password">
-            {errorPassword}
+            {errors.password}
           </div>
           <Button variant="primary" type="submit" className="login-button-submit">
             Valider
           </Button>
+          <div className="register-link">
+            <p>Pas encore de compte ?</p>
+            <Link to="/register">Inscrivez-vous</Link>
+          </div>
         </Form>
       )}
       {loading && (
@@ -123,6 +144,14 @@ LoginForm.propTypes = {
   changeUserField: PropTypes.func.isRequired,
   login: PropTypes.func.isRequired,
   loading: PropTypes.bool.isRequired,
+  setErrors: PropTypes.func.isRequired,
+  clearErrors: PropTypes.func.isRequired,
+  errors: PropTypes.objectOf(
+    PropTypes.shape({
+      email: PropTypes.string.isRequired,
+      password: PropTypes.string.isRequired,
+    }),
+  ).isRequired,
 };
 
 export default LoginForm;

@@ -8,22 +8,13 @@
   height: auto;
   display: flex;
   flex-direction: column;
-  border: 0.2em solid #5bf8c9;
-  border-radius: 0.2em;
+  background-color: $light-color2;
+  border-radius: 0.6em;
   @include m767() {
     width: 20em;
     overflow: hidden;
     margin: 1em;
-   };
-
-   .delete-success {
-    position: absolute;
-    top: 5em;
-    width: 10em;
-    height: 5em;
-    background-color: #69b876;
-    border-radius: 0.2em;
-  }
+  };
 
   &--deleted {
     display: none;
@@ -52,12 +43,12 @@
     width: 100%;
     box-sizing: border-box;
     font-size: 0.9em;
-    color: #ffffff;
+    color: $dark-color;
     @include m767() {
       overflow: hidden;
       margin: 1em auto;
       font-size: 1em;
-     };
+      };
      
     &-name {
       display: flex;
@@ -66,11 +57,11 @@
       max-height: 5em;
       overflow-y: hidden;
       width: 100%;
-      border-bottom: 0.1em solid #5bf8c9;
+      border-bottom: 0.1em solid $dark-color;
       @include m767() {
         height: 5em;
         overflow: hidden;
-       };
+        };
     }
 
     &-size {
@@ -78,7 +69,7 @@
       flex-direction: column;
       justify-content: center;
       width: 50%;
-      border-right: 0.1em solid #5bf8c9;
+      border-right: 0.1em solid $dark-color;
     }
 
     &-type {
@@ -90,8 +81,8 @@
 
     &-name, &-size, &-type {
       span {
-        text-decoration: underline;
         font-size: 1.2em;
+        font-weight: bold;
       }
       p {
         margin-bottom: 0;
@@ -106,10 +97,9 @@
       width: 100%;
       height: 10em;
       padding: 0 0.5em;
-      border-top: 0.1em solid #5bf8c9;
+      border-top: 0.1em solid $dark-color;
       & pre {
-        color: #ffffff;
-        font-family: 'Nunito';
+        color: $dark-color;
         text-align: left;
       }
       &-item {
@@ -130,11 +120,15 @@
 
 .picture-item-delete {
   position: absolute;
-  top: 2%;
+  top: 30%;
   left: 80%;
   background-color: transparent;
   border: none;
   z-index: 100;
+  
+  img {
+    width: 60%;
+  }
 
   &:focus {
     background-color: transparent;

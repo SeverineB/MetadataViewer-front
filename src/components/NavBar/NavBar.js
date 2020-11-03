@@ -13,6 +13,9 @@ const NavBar = ({ isLogged, logout }) => {
     window.location.reload(false);
   };
 
+  // To display username
+  const currentUsername = localStorage.getItem('username');
+
   return (
     <Navbar bg="light" expand="lg">
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -29,6 +32,7 @@ const NavBar = ({ isLogged, logout }) => {
               <>
                 <Link to="/upload">Upload</Link>
                 <Link to="/logout" onClick={handleLogout}>Déconnexion</Link>
+                <p>Bienvenu(e) <span>{currentUsername}</span></p>
               </>
             )}
         </Nav>

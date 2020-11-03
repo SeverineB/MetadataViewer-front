@@ -17,7 +17,6 @@ const UploadForm = ({
   const handleChange = (evt) => {
     evt.preventDefault();
     const fileToUpload = evt.target.files[0];
-    console.log('fileToUpload', fileToUpload);
     const newFileUrl = URL.createObjectURL(evt.target.files[0]);
     if (evt.target.files[0]) {
       changeFile(fileToUpload);

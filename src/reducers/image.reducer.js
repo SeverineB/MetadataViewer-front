@@ -55,11 +55,17 @@ const imageReducer = (state = initialState, action = {}) => {
         ...state,
         file: action.file,
       };
+    case DELETE_FILE:
+      return {
+        ...state,
+      };
     case DELETE_PICTURE_ON_SCREEN:
       return {
+        ...state,
         files: [
           ...state.files.filter((file) => file.image._id !== action.id),
         ],
+        isDeleted: true,
       };
     case FINISH_LOADING:
       return {
@@ -75,11 +81,6 @@ const imageReducer = (state = initialState, action = {}) => {
       return {
         ...state,
         fileUrl: action.fileUrl,
-      };
-    case DELETE_FILE:
-      return {
-        ...state,
-        isDeleted: true,
       };
     default:
       return state;

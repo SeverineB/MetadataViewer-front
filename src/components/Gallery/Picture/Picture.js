@@ -1,53 +1,33 @@
 /* eslint-disable no-underscore-dangle */
 import React from 'react';
 import PropTypes from 'prop-types';
-import axios from 'axios';
 
-import { baseURL, urlServer } from '../../../constants/constants';
+import { urlServer } from '../../../constants/constants';
 
 // import styles
 import './Picture.scss';
 
-import deleteIcon from '../../../assets/icons/x-square.svg';
+import deleteIcon from '../../../assets/icons/trash.png';
 
 const Picture = ({
   file,
   isLogged,
-  isDeleted,
   saveFileToDelete,
   deleteFile,
   deletePictureOnScreen,
 }) => {
+  const { name, size, type } = file.metadata;
+
+  // construct the url of the image
   const fileToUrl = () => {
     const imageUrl = `${urlServer}/${file.image.imagePath}`;
     return imageUrl;
   };
 
-  const { name, size, type } = file.metadata;
-
-  /* const deletePicture = () => {
-    // axios request to delete a picture
-    axios.delete(`${baseURL}images/delete/${file.image._id}`,
-      {
-        withCredentials: true,
-      })
-      .then((response) => {
-        if (response.status === 200) {
-          console.log('delete ok');
-          document.location.reload(true);
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }; */
-
   const handleDelete = () => {
-    /* deletePicture(); */
     saveFileToDelete(file);
     deleteFile();
-    const idToDelete = file.image._id;
-    deletePictureOnScreen(idToDelete);
+    deletePictureOnScreen(file.image._id);
   };
 
   // add style to the exifMetadata object
@@ -59,11 +39,11 @@ const Picture = ({
 
   return (
     <>
-      <div className={!isDeleted ? 'picture-item' : 'picture-item--deleted'}>
+      <div className="picture-item">
         {isLogged
           && (
             <button type="submit" className="picture-item-delete" onClick={handleDelete}>
-              <img src={deleteIcon} alt="croix" />
+              <img src={deleteIcon} alt="trash" />
             </button>
           )}
         <div className="picture-item-image">
@@ -91,11 +71,6 @@ const Picture = ({
           </div>
         </div>
       </div>
-      {isDeleted && (
-        <div>
-          <p>Image bien supprimée</p>
-        </div>
-      )}
     </>
   );
 };

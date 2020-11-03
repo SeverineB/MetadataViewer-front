@@ -15,16 +15,18 @@
 }
 
 .bg-light {
-  background-color: #ffffff;
+  background-color:  $light-color2!important;
 }
+
 .navbar-collapse {
   a {
-    color: #313847;
+    color:$dark-color;
     text-decoration: none;
 
     &:hover {
       color:  #2b312e;
       font-weight: bold;
+      font-size: 1em;
     }
   }
 }

@@ -37,8 +37,8 @@ const auth = (store) => (next) => (action) => {
           }
         })
         .catch((error) => {
-          console.log('impossible de créer le compte', error.message);
-          store.dispatch(registerFailed(error));
+          console.log('impossible de créer le compte', error.response.data);
+          store.dispatch(registerFailed(error.response.data.message));
         })
         .finally(() => {
           store.dispatch(finishLoading());
