@@ -2,7 +2,8 @@
 /* eslint-disable no-console */
 
 import {
-  FETCH_FILES,
+  FETCH_USER_FILES,
+  fetchUserFiles,
   saveFiles,
   saveMetadata,
   saveFile,
@@ -11,18 +12,21 @@ import {
   UPLOAD_FILE,
   uploadSuccess,
   uploadFailed,
+  addFile,
   DELETE_FILE,
-  deleteSuccess,
 } from '../actions';
 
 import api from '../services/api';
 
 const image = (store) => (next) => (action) => {
   switch (action.type) {
-    case FETCH_FILES: {
-      api.get('images')
+    case FETCH_USER_FILES: {
+      const id = localStorage.getItem('id');
+      api.get(`users/${id}/images`,
+        {
+          withCredentials: true,
+        })
         .then((response) => {
-          console.log('response.data dans fetchfiles ', response.data);
           store.dispatch(saveFiles(response.data));
           if (response.data.metadata) {
             store.dispatch(saveMetadata(response.data.metadata));
@@ -41,9 +45,11 @@ const image = (store) => (next) => (action) => {
 
     case UPLOAD_FILE: {
       const state = store.getState();
+      const id = localStorage.getItem('id');
       const formData = new FormData();
       formData.append('image', state.image.file);
-      api.post('images/upload', formData,
+      formData.append('userId', id);
+      api.post(`images/upload/${id}`, formData,
         {
           headers: {
             'content-type': 'multipart/form-data',
@@ -51,12 +57,16 @@ const image = (store) => (next) => (action) => {
           withCredentials: true,
         })
         .then((response) => {
+          console.log('RESPONSE', response.data);
           store.dispatch(saveFile({ ...response.data }));
           store.dispatch(saveMetadata({ ...response.data }));
           store.dispatch(uploadSuccess());
         })
         .catch((error) => {
-          store.dispatch(getErrors(error.response.data.message));
+          if (error) {
+            console.log('error dans Upload file', error.response);
+            store.dispatch(getErrors(error.response.data.message));
+          }
           store.dispatch(uploadFailed());
         })
         .finally(() => {
@@ -67,8 +77,11 @@ const image = (store) => (next) => (action) => {
 
     case DELETE_FILE: {
       const state = store.getState();
-      const id = state.image.file.image._id;
-      api.delete(`images/delete/${id}`,
+      const imageId = state.image.file.image._id;
+      const userId = localStorage.getItem('id');
+      console.log('userId', userId);
+      console.log('imageId', imageId);
+      api.delete(`images/delete/${userId}/${imageId}`,
         {
           withCredentials: true,
         })
@@ -86,4 +99,5 @@ const image = (store) => (next) => (action) => {
       next(action);
   }
 };
+
 export default image;

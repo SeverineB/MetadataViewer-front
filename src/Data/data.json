@@ -1,0 +1,69 @@
+[
+    {
+        "image": {
+            "_id": "5fa5a67fa371c4339c6b35ae",
+            "name": "pexels-eberhard-grossgasteiger-1183021.jpg",
+            "size": 8204057,
+            "type": "image/jpeg",
+            "imagePath": "images\\b20e2648131cd5fe414f1bedd755239c",
+            "thumbnailPath": "images/thumbnails/thumbnails-b20e2648131cd5fe414f1bedd755239c5fa5a668a371c4339c6b35ab",
+            "userId": "5fa5a668a371c4339c6b35ab",
+            "__v": 0
+        },
+        "metadata": {
+            "name": "pexels-eberhard-grossgasteiger-1183021.jpg",
+            "size": 8204057,
+            "type": "image/jpeg"
+        },
+        "exifMetadata": {
+            "Make": "Canon",
+            "Model": "Canon EOS 70D",
+            "Orientation": "Horizontal (normal)",
+            "XResolution": 300,
+            "YResolution": 300,
+            "ResolutionUnit": "inches",
+            "Software": "Adobe Photoshop CC 2018 (Windows)",
+            "ModifyDate": "2018-06-23T06:23:25.000Z",
+            "Artist": "@eberhardgross",
+            "Copyright": "copyright",
+            "ExposureTime": 0.00625,
+            "FNumber": 9,
+            "ExposureProgram": "Aperture priority",
+            "ISO": 200,
+            "SensitivityType": 2,
+            "RecommendedExposureIndex": 200,
+            "ExifVersion": "2.3",
+            "DateTimeOriginal": "2017-10-07T05:37:25.000Z",
+            "CreateDate": "2017-10-07T05:37:25.000Z",
+            "ShutterSpeedValue": 7.321928,
+            "ApertureValue": 6.33985,
+            "ExposureCompensation": 0,
+            "MaxApertureValue": 3,
+            "MeteringMode": "Pattern",
+            "Flash": "Flash did not fire, compulsory flash mode",
+            "FocalLength": 75,
+            "SubSecTime": "00",
+            "SubSecTimeOriginal": "00",
+            "SubSecTimeDigitized": "00",
+            "ColorSpace": 1,
+            "ExifImageWidth": 5000,
+            "ExifImageHeight": 3333,
+            "FocalPlaneXResolution": 2452.11865234375,
+            "FocalPlaneYResolution": 2452.11865234375,
+            "FocalPlaneResolutionUnit": "Centimeter",
+            "CustomRendered": "Normal",
+            "ExposureMode": "Auto",
+            "WhiteBalance": "Auto",
+            "SceneCaptureType": "Standard",
+            "SerialNumber": "073024011705",
+            "LensInfo": [
+                28,
+                75,
+                null,
+                null
+            ],
+            "LensModel": "TAMRON SP 28-75mm F/2.8 Di A09E",
+            "LensSerialNumber": "0000000000"
+        }
+    }
+]

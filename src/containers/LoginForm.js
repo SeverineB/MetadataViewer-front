@@ -13,7 +13,10 @@ const mapStateToProps = (state) => ({
   email: state.user.email,
   password: state.user.password,
   isLoading: state.auth.isLoading,
+  isLogged: state.auth.isLogged,
+  isFailed: state.auth.isFailed,
   errors: state.error.logErrors,
+  error: state.auth.error,
 });
 
 const mapDispatchToProps = (dispatch) => ({

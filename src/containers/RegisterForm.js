@@ -2,7 +2,12 @@ import { connect } from 'react-redux';
 
 import RegisterForm from '../components/RegisterForm/RegisterForm';
 
-import { changeUserFieldRegister, setRegErrors, clearRegErrors, register } from '../actions';
+import {
+  changeUserFieldRegister,
+  setRegErrors,
+  clearRegErrors,
+  register,
+} from '../actions';
 
 const mapStateToProps = (state) => ({
   username: state.register.username,

@@ -1,12 +1,14 @@
 /* eslint-disable no-console */
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import { Button, Form } from 'react-bootstrap';
+import { Button, Form, Alert } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import Loader from 'react-loader-spinner';
 import * as EmailValidator from 'email-validator';
 
 import './RegisterForm.scss';
+
+import cautionIcon from '../../assets/icons/caution-sign.png';
 
 const RegisterForm = ({
   changeUserFieldRegister,
@@ -22,9 +24,14 @@ const RegisterForm = ({
   setErrors,
   clearErrors,
 }) => {
+  const [show, setShow] = useState(true);
+
   useEffect(() => {
     clearErrors();
   }, []);
+
+  console.log('IS FAILED', isFailed);
+  console.log('IS SIGNED UP', isSignedUp);
 
   // Check data before submit form
 
@@ -103,20 +110,22 @@ const RegisterForm = ({
 
   return (
     <div className="register">
-      {isFailed && (
-        <div className="error-message">
+      {isFailed && !isSignedUp && show && (
+        <Alert onClose={() => setShow(false)} dismissible>
+          <img src={cautionIcon} alt="caution" />
           <p>{error}</p>
-        </div>
+          {/* <p>Veuillez vérifier les informations saisies</p> */}
+        </Alert>
       )}
       {!isSignedUp && !isLoading && (
         <>
           <Form className="register-form" onSubmit={handleSubmit}>
             <h2 className="register-form-title">Créez votre compte</h2>
             <Form.Group controlId="formBasicUsername">
-              <Form.Label>Nom d'utilisateur</Form.Label>
+              <Form.Label>Pseudo</Form.Label>
               <Form.Control
                 type="username"
-                placeholder="Votre nom d'utilisateur"
+                placeholder="Votre pseudo"
                 name="username"
                 value={username}
                 onChange={handleChange}
@@ -155,7 +164,7 @@ const RegisterForm = ({
               <p>{errors.password}</p>
             </div>
             <Button variant="primary" type="submit" className="login-button-submit">
-              Valider
+              S'enregistrer
             </Button>
             <div className="login-link">
               <p>Déjà inscrit ?</p>
@@ -164,11 +173,13 @@ const RegisterForm = ({
           </Form>
         </>
       )}
-      {isSignedUp && !isLoading && !isFailed && (
+      {isSignedUp && !isLoading && (
         <div className="success-message">
-          <p>Votre compte est bien créé !</p>
+          <p><span>Le compte a bien été créé !</span></p>
           <p>Vous pouvez maintenant vous connecter</p>
-          <Link to="/login">connexion</Link>
+          <Button type="button" className="login-button-submit">
+            <Link to="/login">connexion</Link>
+          </Button>
         </div>
       )}
       {isLoading && (

@@ -1,0 +1,16 @@
+.error-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 50vh;
+
+  button {
+    border: none;
+    width: 10em;
+    border-radius: 30.5px;
+    background-color: #2e3836;
+    color: #c3cfde;
+    font-size: 0.9em;
+  }
+}

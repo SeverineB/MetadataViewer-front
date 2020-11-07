@@ -7,7 +7,8 @@ import { urlServer } from '../../../constants/constants';
 // import styles
 import './Picture.scss';
 
-import deleteIcon from '../../../assets/icons/trash.png';
+import deleteIcon from '../../../assets/icons/trash-can.png';
+import defaultPicture from '../../../assets/images/defaultPicture.jpg';
 
 const Picture = ({
   file,
@@ -18,9 +19,11 @@ const Picture = ({
 }) => {
   const { name, size, type } = file.metadata;
 
+  console.log('IS LOGGED DANS PICTURE', isLogged);
+
   // construct the url of the image
   const fileToUrl = () => {
-    const imageUrl = `${urlServer}/${file.image.imagePath}`;
+    const imageUrl = `${urlServer}/${file.image.thumbnailPath}`;
     return imageUrl;
   };
 
@@ -42,12 +45,14 @@ const Picture = ({
       <div className="picture-item">
         {isLogged
           && (
-            <button type="submit" className="picture-item-delete" onClick={handleDelete}>
+            <button type="submit" className="picture-item-delete-btn" onClick={handleDelete}>
               <img src={deleteIcon} alt="trash" />
             </button>
           )}
         <div className="picture-item-image">
-          <img src={fileToUrl()} alt={file.image.name} />
+          {isLogged && <img src={fileToUrl()} alt={file.image.name} />}
+          {!isLogged && <img src={defaultPicture} alt={defaultPicture} />}
+         {/*  <img src={!isLogged ? `${urlServer}/${file.image.imagePath}` : `${urlServer}/${file.image.thumbnailPath}`} alt={file.image.name} /> */}
         </div>
         <div className="picture-item-metadatas">
           <div className="picture-item-metadatas-name">

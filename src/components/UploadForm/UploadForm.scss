@@ -3,45 +3,109 @@
 .upload-image {
   display: flex;
   flex-direction: column;
-  height: 40em;
-}
+  align-items: center;
+  min-height: 40vh;
+  width: 100vw;
 
-.upload-image-form {
-  width: 90vw;
-  background-color:#ffffff;
-  border-radius: 0.5em;
-  margin: 1em auto;
-  padding: 2em 0.5em;
-  font-size: 1em;
-  @include m767() {
-    font-size: 1.4em;
-   };
-  @include m1200() {
-    font-size: 1.6em;
-    width: 30em;
-   };
-  .btn-primary{
-    background-color: #5bf8c9;
-    border: none;
-    font-size: 0.8em;
-    margin-top: 1em;
+  &-form {
+    width: 22em;
+    background-color:#ffffff;
+    border-radius: 30.5px;
+    margin: 1em auto;
+    padding: 2em 0.5em;
+    font-size: 1em;
+    @include m767() {
+      width: 30em;
+     };
+    @include m1200() {
+      margin-top: 3em;
+      font-size: 1.1em;
+      width: 32em;
+     };
+    @include m1600() {
+      font-size: 1.2em;
+    };
+
+    &-title {
+      font-family: 'PlayfairDisplay';
+      font-weight: bold;
+      font-style: italic;
+      color: $dark-color;
+      font-size: 1.2em;
+      margin-bottom: 1em;
+      @include m767() {
+        font-size: 1.2em;
+       };
+      @include m1024() {
+        font-size: 1.3em;
+      };
+      @include m1600() {
+        font-size: 1em;
+      };
+    }
+    
+    .btn-primary {
+      background-color: $dark-color;
+      border: none;
+      border-radius: 30.5px;
+      font-size: 0.8em;
+      margin-top: 1em;
+      width: 10em;
+    }
+  
+    input[type=file] {
+      background-color: $light-color;
+      border-radius: 30.5px;
+      font-size: 0.8em;
+      overflow: hidden;
+      padding-left: 0.5em;
+    }
+  
+    &-btn {
+      input[type=file]{
+        display: none;
+      }
+      label {
+        background-color: $main-color;
+        color: $light-color;
+        font-size: 0.8em;
+        padding: 0.5em;
+        border-radius: 30.5px;
+        &:hover {
+          background-color: $dark-color;
+        }
+      }
+    }
   }
 
-  input[type=file] {
-    background-color: #5bf8c9;
-    font-size: 0.8em;
-    overflow: hidden;
-  }
-
-  .form-label {
-    font-size: 0.8em;
-    margin-bottom: 1.2em;
+  .alert {
+    width: 22em;
+    background-color: $light-color;
+    border-radius: 30.5px;
+    p {
+      font-size: 0.9em;
+    }
+    a {
+      color: $dark-color;
+      font-weight: bold;
+      font-size: 0.9em;
+    }
+    @include m767() {
+      width: 35%;
+    };
+    @include m1200() {
+      p {
+        font-size: 1em;
+      }
+      a {
+        font-size: 1em;
+      }
+    };
   }
 }
 
 .upload-image-preview-item {
   width: 90vw;
-  height: 20em;
   border: #c4bbbb;
   border-radius: 0.5em;
   margin: 1em auto;
@@ -49,6 +113,7 @@
     width: 45rem;
     };
   & img {
+    object-fit: contain;
     border-radius: 0.5em;
     width: 100%;
   }

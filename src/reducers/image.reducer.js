@@ -4,6 +4,9 @@ import {
   SAVE_METADATA,
   SAVE_FILE,
   UPLOAD_FILE,
+  UPLOAD_SUCCESS,
+  UPLOAD_FAILED,
+  ADD_FILE,
   SAVE_FILE_TO_DELETE,
   FINISH_LOADING,
   CHANGE_FILE,
@@ -17,17 +20,33 @@ const initialState = {
   file: {},
   fileUrl: '',
   metadata: {},
-  isLoading: true,
+  isLoading: false,
+  isLoaded: false,
   isDeleted: false,
 };
 
 const imageReducer = (state = initialState, action = {}) => {
   switch (action.type) {
+    case CHANGE_FILE:
+      return {
+        ...state,
+        file: action.file,
+      };
+    case CHANGE_URL:
+      return {
+        ...state,
+        fileUrl: action.fileUrl,
+      };
     case SAVE_FILES:
       return {
         ...state,
         isLoading: false,
         files: action.files,
+      };
+    case ADD_FILE:
+      return {
+        ...state,
+        files: [...state.files, action.file],
       };
     case SAVE_METADATA:
       return {
@@ -42,14 +61,31 @@ const imageReducer = (state = initialState, action = {}) => {
     case SAVE_FILE:
       return {
         ...state,
-        id: action.id,
-        imageUrl: action.imageUrl,
+        file: {
+          ...state.file,
+          id: action.id,
+          imageUrl: action.imageUrl,
+        },
       };
     case UPLOAD_FILE:
+      console.log('action file in upload in reducer', action.file.new);
       return {
         ...state,
         files: [...state.files, action.file],
         isLoading: true,
+        isLoaded: false,
+      };
+    case UPLOAD_SUCCESS:
+      return {
+        ...state,
+        isLoading: true,
+        isLoaded: true,
+      };
+    case UPLOAD_FAILED:
+      return {
+        ...state,
+        isLoading: true,
+        isLoaded: false,
       };
     case SAVE_FILE_TO_DELETE:
       return {
@@ -71,16 +107,6 @@ const imageReducer = (state = initialState, action = {}) => {
       return {
         ...state,
         isLoading: false,
-      };
-    case CHANGE_FILE:
-      return {
-        ...state,
-        file: action.file,
-      };
-    case CHANGE_URL:
-      return {
-        ...state,
-        fileUrl: action.fileUrl,
       };
     default:
       return state;

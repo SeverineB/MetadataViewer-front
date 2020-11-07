@@ -33,7 +33,7 @@ const auth = (store) => (next) => (action) => {
         .then((response) => {
           console.log('RESPONSE AFTER REGISTER ', response);
           if (response.status === 200) {
-            store.dispatch(registerSuccess(true));
+            store.dispatch(registerSuccess());
           }
         })
         .catch((error) => {
@@ -57,10 +57,10 @@ const auth = (store) => (next) => (action) => {
         withCredentials: true,
       })
         .then((response) => {
-          console.log('RESPONSE DATA dans login', response.data);
           localStorage.setItem('username', response.data.session.username);
+          localStorage.setItem('id', response.data.session._id);
           store.dispatch(saveUser({ ...response.data }));
-          store.dispatch(loginSuccess(true));
+          store.dispatch(loginSuccess());
         })
         .catch((error) => {
           store.dispatch(loginFailed(error.response.data.message));
@@ -78,8 +78,9 @@ const auth = (store) => (next) => (action) => {
           withCredentials: true,
         })
         .then((response) => {
+          console.log('je suis bien déconnecté');
           localStorage.removeItem('username');
-          store.dispatch(loginSuccess(false));
+          store.dispatch(userDisconnected());
         })
         .catch((error) => {
           console.log('Impossible de déconnecter l\'utilisateur', error.message);

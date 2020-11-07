@@ -6,6 +6,7 @@ const initialState = {
   username: '',
   email: '',
   password: '',
+  showAlert: true,
 };
 
 const user = (state = initialState, action = {}) => {

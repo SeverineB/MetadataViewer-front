@@ -1,8 +1,10 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable no-console */
-import React from 'react';
-import { useHistory } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { Button, Form } from 'react-bootstrap';
+import { Button, Form, Alert } from 'react-bootstrap';
+import Loader from 'react-loader-spinner';
 
 import './UploadForm.scss';
 
@@ -10,9 +12,11 @@ const UploadForm = ({
   changeFile,
   fileUrl,
   changeUrl,
+  isLoading,
+  isLoaded,
   uploadFile,
 }) => {
-  const history = useHistory();
+  const [show, setShow] = useState(false);
 
   const handleChange = (evt) => {
     evt.preventDefault();
@@ -27,29 +31,43 @@ const UploadForm = ({
   const handleSubmit = (evt) => {
     evt.preventDefault();
     uploadFile();
+    setShow(true);
     changeUrl('');
-    history.push('/');
   };
+
+  console.log('IS LOADED', isLoaded);
+  console.log('SHOW', show);
 
   return (
     <div className="upload-image">
-      <div className="upload-image-form">
-        <Form onSubmit={handleSubmit}>
-          <Form.Group>
-            <Form.Label>Téléchargez une image pour afficher ses métadonnées</Form.Label>
-            <Form.File
-              id="exampleFormControlFile1"
-              name="image"
-              onChange={handleChange}
-            />
-          </Form.Group>
-          <Button
-            type="submit"
-          >
-            Valider
-          </Button>
-        </Form>
-      </div>
+      {isLoaded && show && (
+      <Alert onClose={() => setShow(false)} dismissible>
+        <p>Image téléchargée avec succès !</p>
+        <Link to="/">Revenir à l'accueil</Link>
+      </Alert>
+      )}
+      {isLoading && (
+      <Loader
+        type="Circles"
+        color="#c0ded6"
+        height={40}
+        width={40}
+      />
+      )}
+      <Form className="upload-image-form" onSubmit={handleSubmit}>
+        <h2 className="upload-image-form-title">Téléchargez une image pour afficher ses métadonnées</h2>
+        <Form.Group>
+          <div className="upload-btn-container upload-image-form-btn">
+            <label htmlFor="inputFile" className="label-file">Choisir une image</label>
+            <input type="file" name="image" id="inputFile" onChange={handleChange} />
+          </div>
+        </Form.Group>
+        <Button
+          type="submit"
+        >
+          Télécharger
+        </Button>
+      </Form>
       <div className="upload-image-preview-container">
         {fileUrl ? (
           <div className="upload-image-preview-item">
@@ -63,6 +81,8 @@ const UploadForm = ({
 };
 
 UploadForm.propTypes = {
+  isLoading: PropTypes.bool.isRequired,
+  isLoaded: PropTypes.bool.isRequired,
   changeFile: PropTypes.func.isRequired,
   fileUrl: PropTypes.string.isRequired,
   changeUrl: PropTypes.func.isRequired,

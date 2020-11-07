@@ -1,12 +1,15 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable no-console */
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import { Button, Form } from 'react-bootstrap';
+import { Button, Form, Alert } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import Loader from 'react-loader-spinner';
 import * as EmailValidator from 'email-validator';
 
 import './LoginForm.scss';
+
+import cautionIcon from '../../assets/icons/caution-sign.png';
 
 const LoginForm = ({
   changeUserField,
@@ -14,10 +17,15 @@ const LoginForm = ({
   password,
   login,
   isLoading,
+  isLogged,
+  isFailed,
+  error,
   errors,
   setErrors,
   clearErrors,
 }) => {
+  const [show, setShow] = useState(true);
+
   useEffect(() => {
     clearErrors();
   }, []);
@@ -80,7 +88,13 @@ const LoginForm = ({
 
   return (
     <div className="login">
-      {!isLoading && (
+      {isFailed && show && (
+        <Alert onClose={() => setShow(false)} dismissible>
+          <img src={cautionIcon} alt="caution" />
+          <p>{error}</p>
+        </Alert>
+      )}
+      {!isLogged && !isLoading && (
         <Form className="login-form" onSubmit={handleSubmit}>
           <h2 className="login-form-title">Connectez-vous à votre compte</h2>
           <Form.Group controlId="formBasicEmail">
@@ -113,11 +127,11 @@ const LoginForm = ({
             {errors.password}
           </div>
           <Button variant="primary" type="submit" className="login-button-submit">
-            Valider
+            Se connecter
           </Button>
           <div className="register-link">
-            <p>Pas encore de compte ?</p>
-            <Link to="/register">Inscrivez-vous</Link>
+            <p>Pas encore inscrit?</p>
+            <Link to="/register">Créer un compte</Link>
           </div>
         </Form>
       )}
@@ -139,14 +153,10 @@ LoginForm.propTypes = {
   changeUserField: PropTypes.func.isRequired,
   login: PropTypes.func.isRequired,
   isLoading: PropTypes.bool.isRequired,
+  isLogged: PropTypes.bool.isRequired,
+  isFailed: PropTypes.bool.isRequired,
   setErrors: PropTypes.func.isRequired,
   clearErrors: PropTypes.func.isRequired,
-  errors: PropTypes.objectOf(
-    PropTypes.shape({
-      email: PropTypes.string.isRequired,
-      password: PropTypes.string.isRequired,
-    }),
-  ).isRequired,
 };
 
 export default LoginForm;

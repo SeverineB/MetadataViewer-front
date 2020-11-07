@@ -6,6 +6,7 @@
 
 Cette application permet de visualiser les métadonnées d'une image que l'on a téléchargée, après s'être inscrit et connecté.
 
+
 ### Frameworks & outils utilisés
 ----------------------------------
 
@@ -15,7 +16,6 @@ Cette application permet de visualiser les métadonnées d'une image que l'on a 
 * [Sass](https://sass-lang.com/)
 * [Axios](https://github.com/axios/axios)
 * [Bootstrap](https://react-bootstrap.github.io/)
-* [Exifr](https://www.npmjs.com/package/exifr) // Lecture des métadonnées
 
 ### Installation
 ----------------
@@ -25,10 +25,19 @@ Cette application permet de visualiser les métadonnées d'une image que l'on a 
   - yarn
 * Lancement du projet en mode développement
   - yarn start
-* Lancer l'application dans le navigateur
+* Lancer l'application dans le navigateur en mode développement
   - http://localhost:8080
+* Lancement du projet en mode production
+  - yarn build
+* Utiliser le .env.example afin de configurer le .env avec les variables d'environnement nécessaires
 
 ### Backend
 -----------
 
 https://github.com/SeverineB/MetadataViewer-back
+
+### Améliorations
+-----------------
+
+* Passage en HTTPS (back et front)
+

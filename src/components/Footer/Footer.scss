@@ -2,13 +2,17 @@
 
 .footer-container {
   position: absolute;
-  margin-bottom: 0;
+  bottom: 0;
   width: 100vw;
   height: 3em;
+  z-index: 20;
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: $main-color;
   p {
     color: #ffffff;
+    font-size: 0.9em;
+    margin-bottom: 0;
   }
 }

@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 
 import Gallery from '../components/Gallery/Gallery';
 
-import { fetchFiles } from '../actions';
+import { fetchUserFiles } from '../actions';
 
 const mapStateToProps = (state) => ({
   files: state.image.files,
@@ -13,8 +13,8 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  fetchFiles: () => {
-    dispatch(fetchFiles());
+  fetchUserFiles: () => {
+    dispatch(fetchUserFiles());
   },
 });
 

@@ -6,7 +6,7 @@ import { shallow } from 'enzyme';
 import { should } from 'chai';
 
 // Components
-import App from 'src/components/App';
+import App from '../../src/components/App/App';
 
 // préparation de should
 should();

@@ -1,42 +1,70 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable no-console */
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
+import Loader from 'react-loader-spinner';
 
 import Picture from '../../containers/Picture';
+import data from '../../data/Data.json';
 
 import './Gallery.scss';
 
 const Gallery = ({
   files,
   errors,
-  fetchFiles,
+  fetchUserFiles,
   isLoading,
+  isLogged,
 }) => {
-  console.log('errors vaut ', errors);
-  console.log('files vaut ', files);
-
-  useEffect(() => {
-    fetchFiles();
-  }, []);
+  if (isLogged) {
+    useEffect(() => {
+      fetchUserFiles();
+    }, []);
+  }
 
   return (
     <>
-      <div className="pictures-gallery-list">
+      {isLoading && isLogged && (
+        <Loader
+          type="Circles"
+          color="#c0ded6"
+          height={40}
+          width={40}
+        />
+      )}
+      <div className="pictures-gallery">
+        {errors && (
         <div className={errors && errors.message ? 'error-message' : 'error-message--hidden'}>
           <p>{errors.message}</p>
         </div>
-        {!isLoading && (files.length === 0) ? (
+        )}
+
+        {!isLogged && (
+          <div className="pictures-gallery-list">
+            {data.map((file) => (
+              <div key={file.image._id}>
+                <Picture {...file} file={file} />
+              </div>
+            ))}
+          </div>
+        )}
+
+        {isLogged && (
+          <div className="pictures-gallery-list">
+            {files.map((file) => (
+              <div key={file.image._id}>
+                <Picture {...file} file={file} />
+              </div>
+            ))}
+          </div>
+        )}
+
+        {!isLoading && isLogged && (files.length === 0) ? (
           <div className="error-message--empty">
-            <p>Aucune image à afficher</p>
+            <p>Aucune image à afficher pour l'instant...</p>
           </div>
         ) : ''}
-
-        {files.map((file) => (
-          <div key={file.image._id}>
-            <Picture {...file} file={file} />
-          </div>
-        ))}
       </div>
     </>
   );
@@ -45,12 +73,7 @@ const Gallery = ({
 Gallery.propTypes = {
   isLogged: PropTypes.bool.isRequired,
   isLoading: PropTypes.bool.isRequired,
-  fetchFiles: PropTypes.func.isRequired,
-  errors: PropTypes.objectOf(
-    PropTypes.shape({
-      message: PropTypes.string.isRequired,
-    }),
-  ).isRequired,
+  fetchUserFiles: PropTypes.func.isRequired,
   files: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.string,

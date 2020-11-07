@@ -6,34 +6,19 @@ export const REGISTER_FAILED = 'REGISTER_FAILED';
 export const LOGIN = 'LOGIN';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const LOGIN_FAILED = 'LOGIN_FAILED';
+export const CHECK_IF_LOGGED = 'CHECK_IF_LOGGED';
 export const LOGOUT = 'LOGOUT';
 export const USER_CONNECTED = 'USER_CONNECTED';
-export const CHECK_IF_LOGGED = 'CHECK_IF_LOGGED';
 export const USER_DISCONNECTED = 'USER_DISCONNECTED';
 
 // ACTION CREATOR
-
-export const login = () => ({
-  type: LOGIN,
-});
-
-export const loginSuccess = (isLogged) => ({
-  type: LOGIN_SUCCESS,
-  isLogged,
-});
-
-export const loginFailed = (error) => ({
-  type: LOGIN_FAILED,
-  error,
-});
 
 export const register = () => ({
   type: REGISTER,
 });
 
-export const registerSuccess = (isSignedUp) => ({
+export const registerSuccess = () => ({
   type: REGISTER_SUCCESS,
-  isSignedUp,
 });
 
 export const registerFailed = (error) => ({
@@ -41,12 +26,25 @@ export const registerFailed = (error) => ({
   error,
 });
 
-export const logout = () => ({
-  type: LOGOUT,
+export const login = () => ({
+  type: LOGIN,
+});
+
+export const loginSuccess = () => ({
+  type: LOGIN_SUCCESS,
+});
+
+export const loginFailed = (error) => ({
+  type: LOGIN_FAILED,
+  error,
 });
 
 export const checkIfLogged = () => ({
   type: CHECK_IF_LOGGED,
+});
+
+export const logout = () => ({
+  type: LOGOUT,
 });
 
 export const userDisconnected = () => ({

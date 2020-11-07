@@ -2,7 +2,6 @@ import {
   LOGIN,
   LOGOUT,
   SAVE_USER,
-  USER_CONNECTED,
   USER_DISCONNECTED,
   LOGIN_SUCCESS,
   LOGIN_FAILED,
@@ -14,6 +13,7 @@ const initialState = {
   id: null,
   isLoading: false,
   isLogged: false,
+  isFailed: false,
   isDisconnected: false,
   error: {},
 };
@@ -24,7 +24,6 @@ const auth = (state = initialState, action = {}) => {
       return {
         ...state,
         isLoading: true,
-        isLogged: true,
       };
     case LOGOUT:
       return {
@@ -38,7 +37,7 @@ const auth = (state = initialState, action = {}) => {
         isLogged: action.isLogged,
         session: {
           ...state.session,
-          _id: action.sessionId,
+          id: action.sessionId,
           username: action.sessionUsername,
         },
       };

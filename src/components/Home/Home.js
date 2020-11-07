@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
-import React, { useEffect } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import Loader from 'react-loader-spinner';
+import { Alert } from 'react-bootstrap';
 
 import './Home.scss';
 
@@ -9,33 +9,26 @@ import './Home.scss';
 import Gallery from '../../containers/Gallery';
 
 const Home = ({
-  fetchFiles,
   isLogged,
   isLoading,
 }) => {
-  useEffect(() => {
-    console.log('je check les images en arrivant sur home');
-    fetchFiles();
-  }, []);
+  const [show, setShow] = useState(true);
 
   // To display username
   const currentUsername = localStorage.getItem('username');
 
   return (
     <div className="home-page">
-      {isLoading && (
-        <Loader
-          type="Circles"
-          color="#c0ded6"
-          height={40}
-          width={40}
-        />
+      {!isLogged && show && (
+        <Alert onClose={() => setShow(false)} dismissible>
+          <p>Connectez-vous pour accéder à votre galerie personnelle et au téléchargement</p>
+        </Alert>
       )}
-      {isLogged && !isLoading && (
-        <div className="home-page-message">
-          <p className="home-page-message-welcome">Vous êtes bien connecté(e) {currentUsername}</p>
-          <p className="home-page-message-text">Vous pouvez maintenant télécharger des images et les supprimer</p>
-        </div>
+      {isLogged && !isLoading && show && (
+        <Alert className="alert-welcome">
+          <p>Bienvenue <span>{currentUsername}</span> !</p>
+          <p>Vous pouvez maintenant télécharger des images</p>
+        </Alert>
       )}
       <Gallery />
     </div>
@@ -45,7 +38,6 @@ const Home = ({
 Home.propTypes = {
   isLoading: PropTypes.bool.isRequired,
   isLogged: PropTypes.bool.isRequired,
-  fetchFiles: PropTypes.func.isRequired,
 };
 
 export default Home;

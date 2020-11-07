@@ -1,15 +1,21 @@
 @import 'reset';
 @import 'vars';
 
-html {
-  height: 100%;
+html, body {
+  min-height: 100vh;
 }
+
+html {
+  position: relative;
+}
+
 body {
-  font-family: 'Nunito', sans-serif;
-  height: 100%;
+  font-family: 'Montserrat'!important;
   margin: 0;
   padding: 0;
+  position: relative;
   background-color: #56756d!important;
+  background: linear-gradient(90deg, rgba(46,56,54,1) 0%, rgba(67,88,83,1) 50%, rgba(221,231,229,1) 100%)!important;
 }
 
 // FONTS
@@ -47,4 +53,44 @@ body {
   src: url("../../src/assets/fonts/Quicksand-regular.ttf");
     font-weight: normal;
     font-style: normal;
+}
+
+// SCROLL BAR
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #c3cfde #2e3836; 
+}
+
+::-webkit-scrollbar {
+  width: 0.5em;
+  height: 3px;
+}
+::-webkit-scrollbar-button {
+  width: 0px;
+  height: 0px;
+}
+::-webkit-scrollbar-thumb {
+  background: #c3cfde;
+  border-radius: 50px;
+}
+/* ::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(to bottom,#f0509c, #ffaea1, #64ffda);
+} */
+::-webkit-scrollbar-thumb:active {
+  background: #2e3836;
+  border-radius: 50px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: 50px;
+}
+::-webkit-scrollbar-track:hover {
+  background: transparent;
+}
+::-webkit-scrollbar-track:active {
+  background: transparent;
+}
+::-webkit-scrollbar-corner {
+  background: transparent;
 }
