@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Navbar, Nav } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import './NavBar.scss';
 
 const NavBar = ({ isLogged, logout }) => {
+  const [expanded, setExpanded] = useState(false);
   const handleLogout = (evt) => {
     evt.preventDefault();
     logout();
@@ -14,20 +15,20 @@ const NavBar = ({ isLogged, logout }) => {
   };
 
   return (
-    <Navbar bg="light" expand="lg">
-      <Navbar.Toggle aria-controls="basic-navbar-nav" />
+    <Navbar bg="light" expand="lg" expanded={expanded}>
+      <Navbar.Toggle aria-controls="basic-navbar-nav" onClick={() => setExpanded(expanded ? false : 'expanded')} />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="mr-auto">
-          <Link to="/">Home</Link>
+          <Link to="/" onClick={() => setExpanded(false)}>Home</Link>
           {!isLogged
             ? (
               <>
-                <Link to="/login">Connexion</Link>
-                <Link to="/register">Inscription</Link>
+                <Link to="/login" onClick={() => setExpanded(false)}>Connexion</Link>
+                <Link to="/register" onClick={() => setExpanded(false)}>Inscription</Link>
               </>
             ) : (
               <>
-                <Link to="/upload">Upload</Link>
+                <Link to="/upload" onClick={() => setExpanded(false)}>Upload</Link>
                 <Link to="/logout" onClick={handleLogout}>Déconnexion</Link>
               </>
             )}

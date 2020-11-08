@@ -18,11 +18,13 @@ const Home = ({
 
   return (
     <div className="home-page-container">
-      <About />
       {!isLogged && (
-        <Alert>
-          <p>Connectez-vous pour accéder à votre galerie personnelle et au téléchargement</p>
-        </Alert>
+        <>
+          <About />
+          <Alert>
+            <p>Connectez-vous pour accéder à votre galerie personnelle et au téléchargement</p>
+          </Alert>
+        </>
       )}
       {isLogged && !isLoading && (
         <Alert className="alert-welcome">

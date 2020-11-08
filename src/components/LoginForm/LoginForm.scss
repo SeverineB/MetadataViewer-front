@@ -22,13 +22,13 @@
         -2px -2px 12px 0 rgba(0, 0, 0, 0.25);
     border-radius: 30.5px;
     padding: 2em 1em;
-    width: 80%;
+    width: 25em;
     font-size: 0.9em;
     @include m767() {
-      width: 40%;
+      width: 28em;
      };
     @include m1024() {
-      width: 35%;
+      width: 26em;
      };
     @include m1200() {
       width: 25em;
@@ -51,16 +51,27 @@
       background-color: $dark-color;
       border: none;
       border-radius: 30.5px;
-      /* box-shadow: 
-      4px 4px 16px 0 rgba(70, 69, 69, 0.25),
-      -2px -2px 12px 0 rgba(214, 213, 213, 0.25); */
       width: 10em;
       margin: 1em 0;
       font-size: 1em;
+      font-weight: bold;
 
       &:hover {
-        background-color: $main-color;
+        background-color: $accent-color;
+        color: $dark-color;
         transition: background-color 0.3s ease-in;
+      }
+
+      &:active {
+        background-color: $accent-color !important;
+        color: $dark-color !important;
+        border: none !important;
+        box-shadow: none !important;
+      }
+
+      &:focus {
+        border: none;
+        box-shadow: none;
       }
     }
 
