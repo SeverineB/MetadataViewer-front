@@ -33,7 +33,7 @@ const Gallery = ({
           width={40}
         />
       )}
-      <div className="pictures-gallery">
+      <div className="gallery-container">
         {errors && (
         <div className={errors && errors.message ? 'error-message' : 'error-message--hidden'}>
           <p>{errors.message}</p>
@@ -41,7 +41,7 @@ const Gallery = ({
         )}
 
         {!isLogged && (
-          <div className="pictures-gallery-list">
+          <div className="gallery-container-list">
             {data.map((file) => (
               <div key={file.image._id}>
                 <Picture {...file} file={file} />
@@ -51,7 +51,7 @@ const Gallery = ({
         )}
 
         {isLogged && (
-          <div className="pictures-gallery-list">
+          <div className="gallery-container-list">
             {files.map((file) => (
               <div key={file.image._id}>
                 <Picture {...file} file={file} />

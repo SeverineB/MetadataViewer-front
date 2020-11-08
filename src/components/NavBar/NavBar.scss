@@ -5,14 +5,15 @@
   display: flex;
   align-items: center;
   @include m767() {
-    height: 8em;
-   };
-  @include m767() {
+    height: 10em;
+  };
+  @include m1024() {
     height: 4em;
-    };
+  };
 
   a {
     font-size: 1em;
+    font-weight: bold;
     padding: 0.8em 1em;
   }
 }
@@ -22,8 +23,10 @@
 }
 
 .navbar-collapse {
+
   a {
     color:$dark-color;
+    font-size: 1em;
     text-decoration: none;
 
     &:hover {

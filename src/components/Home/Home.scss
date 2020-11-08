@@ -1,12 +1,15 @@
 @import 'src/styles/vars';
 
-.home-page {
+.home-page-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   min-height: 65vh;
   @include m767() {
     min-height: 70vh
+   };
+   @include m1024() {
+    min-height: 65vh
    };
   @include m1900() {
     min-height: 60vh
@@ -52,22 +55,5 @@
     p {
       font-weight: bold;
     }
-  }
-}
-
-
-.home-page-message {
-  width: 90vw;
-  margin: 1em auto;
-  & p {
-    color: #ffffff;
-    font-size: 1em;
-    @include m1200() {
-      font-size: 1.2em;
-     };
-  }
-
-  & span {
-    font-weight: bold;
   }
 }

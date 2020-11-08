@@ -1,0 +1,33 @@
+@import 'src/styles/vars';
+
+.about-container {
+
+  .alert {
+    margin: 0.5em auto;
+    padding: 1em;
+    padding-top: 1.5em;
+    width: 90vw;
+    background-color: $main-color;
+    border-radius: 30.5px;
+    p {
+      font-size: 0.8em;
+      color: #ffffff;
+      margin-bottom: 0;
+    }
+
+    .close {
+      padding: 0.2em 0.4em;
+      color: $accent-color;
+      font-size: 2em;
+    }
+
+    .span-bold {
+      font-weight: bold;
+    }
+
+    .span-italic {
+      font-style: italic;
+    }
+  }
+
+}

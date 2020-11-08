@@ -5,7 +5,7 @@ import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Route, Switch, withRouter } from 'react-router-dom';
 
-import pixelIcon from '../../assets/icons/alien-pixels.png';
+import pixelIcon from '../../assets/icons/alien-pixel2.png';
 
 // == Import styles
 import './App.scss';
@@ -30,9 +30,6 @@ const App = ({ checkIfLogged }) => {
   useEffect(() => {
     checkIfLogged();
   }, []);
-
-  const vh = window.innerHeight * 0.01;
-  document.documentElement.style.setProperty('--vh', `${vh}px`);
 
   return (
     <div className="app">

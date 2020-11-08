@@ -98,7 +98,6 @@ const LoginForm = ({
         <Form className="login-form" onSubmit={handleSubmit}>
           <h2 className="login-form-title">Connectez-vous à votre compte</h2>
           <Form.Group controlId="formBasicEmail">
-            <Form.Label>Adresse email</Form.Label>
             <Form.Control
               type="email"
               placeholder="Votre email"
@@ -113,7 +112,6 @@ const LoginForm = ({
           </div>
 
           <Form.Group controlId="formBasicPassword">
-            <Form.Label>Mot de passe</Form.Label>
             <Form.Control
               type="password"
               placeholder="Votre mot de passe"
@@ -138,7 +136,7 @@ const LoginForm = ({
       {isLoading && (
         <Loader
           type="Circles"
-          color="#c0ded6"
+          color="#a9df93"
           height={40}
           width={40}
         />

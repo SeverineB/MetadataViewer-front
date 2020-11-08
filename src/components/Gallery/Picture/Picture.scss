@@ -20,6 +20,8 @@
     margin: 1em;
   };
 
+  // PICTURE IMAGE
+
   &-image {
     max-height: 15em;
     overflow: hidden;
@@ -38,6 +40,8 @@
     }
   }
 
+  // PICTURE INFOS
+
   &-metadatas {
     display: flex;
     flex-wrap: wrap;
@@ -52,7 +56,7 @@
       };
      
     &-name {
-      max-height: 5em;
+      max-height: 5.2em;
       overflow-y: hidden;
       width: 100%;
       border-bottom: 0.1em solid $light-color;
@@ -60,6 +64,9 @@
         height: 5em;
         overflow: hidden;
         };
+        span {
+          margin-top: 0.4em;
+        }
     }
 
     &-size {
@@ -95,6 +102,7 @@
       flex-direction: column;
       align-items: flex-start;
       overflow: scroll;
+      -webkit-overflow-scrolling: touch;
       width: 100%;
       height: 10em;
       padding: 0 0.5em;
@@ -127,8 +135,8 @@
   &-delete-btn {
     position: absolute;
     width: 10%;
-    top: 36%;
-    left: 88%;
+    top: 37%;
+    left: 87%;
     background-color: transparent;
     border: none;
     z-index: 10;

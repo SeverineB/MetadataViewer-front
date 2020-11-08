@@ -6,12 +6,38 @@
   justify-content: center;
   height: 50vh;
 
+  p {
+    color: #ffffff;
+  }
+
   .notfound-error {
     font-family: 'LLPixel';
     font-size: 4em;
+    color: $light-color;
+
+    animation: changeColor 3s infinite;
+
+    @keyframes changeColor {
+      0%{
+        color: $light-color;
+      }
+      50%{
+        color: $accent-color;
+      }
+      100%{
+        color: $light-color;
+      }
+    }
   }
 
   a {
+    margin-top: 4em;
+    font-size: 1.4em;
+    text-decoration: none;
     color: #ffffff;
+
+    &:hover {
+      color: $accent-color;
+    }
   }
 }

@@ -49,7 +49,7 @@ const UploadForm = ({
       {isLoading && (
       <Loader
         type="Circles"
-        color="#c0ded6"
+        color="#a9df93"
         height={40}
         width={40}
       />

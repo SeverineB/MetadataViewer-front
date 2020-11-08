@@ -9,6 +9,7 @@ import * as EmailValidator from 'email-validator';
 import './RegisterForm.scss';
 
 import cautionIcon from '../../assets/icons/caution-sign.png';
+import checkedIcon from '../../assets/icons/checked.png';
 
 const RegisterForm = ({
   changeUserFieldRegister,
@@ -29,9 +30,6 @@ const RegisterForm = ({
   useEffect(() => {
     clearErrors();
   }, []);
-
-  console.log('IS FAILED', isFailed);
-  console.log('IS SIGNED UP', isSignedUp);
 
   // Check data before submit form
 
@@ -114,7 +112,6 @@ const RegisterForm = ({
         <Alert onClose={() => setShow(false)} dismissible>
           <img src={cautionIcon} alt="caution" />
           <p>{error}</p>
-          {/* <p>Veuillez vérifier les informations saisies</p> */}
         </Alert>
       )}
       {!isSignedUp && !isLoading && (
@@ -122,7 +119,6 @@ const RegisterForm = ({
           <Form className="register-form" onSubmit={handleSubmit}>
             <h2 className="register-form-title">Créez votre compte</h2>
             <Form.Group controlId="formBasicUsername">
-              <Form.Label>Pseudo</Form.Label>
               <Form.Control
                 type="username"
                 placeholder="Votre pseudo"
@@ -136,7 +132,6 @@ const RegisterForm = ({
               {errors.username}
             </div>
             <Form.Group controlId="formBasicEmail">
-              <Form.Label>Adresse email</Form.Label>
               <Form.Control
                 type="email"
                 placeholder="Votre email"
@@ -150,7 +145,6 @@ const RegisterForm = ({
               {errors.email}
             </div>
             <Form.Group controlId="formBasicPassword">
-              <Form.Label>Mot de passe</Form.Label>
               <Form.Control
                 type="password"
                 placeholder="Votre mot de passe"
@@ -175,17 +169,20 @@ const RegisterForm = ({
       )}
       {isSignedUp && !isLoading && (
         <div className="success-message">
-          <p><span>Le compte a bien été créé !</span></p>
-          <p>Vous pouvez maintenant vous connecter</p>
-          <Button type="button" className="login-button-submit">
-            <Link to="/login">connexion</Link>
-          </Button>
+          <img src={checkedIcon} alt={checkedIcon} />
+          <div className="success-message-text">
+            <p><span>Le compte a bien été créé !</span></p>
+            <p>Vous pouvez maintenant vous connecter</p>
+            <Button type="button" className="login-button-submit">
+              <Link to="/login">connexion</Link>
+            </Button>
+          </div>
         </div>
       )}
       {isLoading && (
         <Loader
           type="Circles"
-          color="#c0ded6"
+          color="#a9df93"
           height={40}
           width={40}
           className="register-loader"
