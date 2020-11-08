@@ -1,18 +1,15 @@
 /* eslint-disable import/no-unresolved */
 /* eslint-disable no-console */
-// == Import npm
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Route, Switch, withRouter } from 'react-router-dom';
 
-import pixelIcon from '../../assets/icons/alien-pixel2.png';
-
-// == Import styles
 import './App.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
 
-// Import Components
+import pixelIcon from '../../assets/icons/alien-pixel2.png';
+
 import Home from '../../containers/Home';
 import NavBar from '../../containers/NavBar';
 import LoginForm from '../../containers/LoginForm';
@@ -24,7 +21,6 @@ import Page404 from '../Page404/Page404';
 import Footer from '../Footer/Footer';
 import ErrorBoundary from '../../ErrorBoundary';
 
-// == Composant
 const App = ({ checkIfLogged }) => {
   // check if the user is connected
   useEffect(() => {

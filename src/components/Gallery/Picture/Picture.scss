@@ -14,8 +14,10 @@
     12px 12px 16px 0 rgba(0, 0, 0, 0.25),
     -2px -2px 12px 0 rgba(114, 112, 112, 0.4);
  
-  @include m767() {
+  @include m400() {
     width: 20em;
+  };
+  @include m767() {
     overflow: hidden;
     margin: 1em;
   };
@@ -36,7 +38,7 @@
       }
       @include m767() {
         max-height: 12em;
-       };
+      };
     }
   }
 
@@ -53,8 +55,9 @@
     @include m767() {
       overflow: hidden;
       margin: 1em auto;
-      };
-     
+    };
+    
+    // NAME OF FILE
     &-name {
       max-height: 5.2em;
       overflow-y: hidden;
@@ -69,12 +72,14 @@
         }
     }
 
+    // SIZE OF FILE
     &-size {
       width: 50%;
       border-right: 0.1em solid $light-color;
       border-left: 0.1em solid $light-color;
     }
 
+    // TYPE OF FILE
     &-type {
       width: 50%;
       border-right: 0.1em solid $light-color;
@@ -97,6 +102,7 @@
       }
     }
     
+    // EXIF LIST
     &-exif {
       display: flex;
       flex-direction: column;
@@ -104,7 +110,7 @@
       overflow: scroll;
       -webkit-overflow-scrolling: touch;
       width: 100%;
-      height: 10em;
+      max-height: 10em;
       padding: 0 0.5em;
       border: 0.1em solid $light-color;
       & pre {
@@ -116,15 +122,19 @@
         white-space: pre-line;
         overflow: hidden;
       }
+      
       &-item {
         display: flex;
+        // NAME OF EXIF METADATA
         &-name {
           font-weight: bold;
         }
+        // VALUE OF EXIF METADATA
         &-value {
           margin-left: 0.5em;
         }
       }
+      // EMPTY METADATA LIST
       &--noentry {
         margin: 2em 0.5em;
         font-size: 0.9em;
@@ -132,6 +142,7 @@
     }
   }
 
+  // DELETE PICTURE BUTTON
   &-delete-btn {
     position: absolute;
     width: 10%;

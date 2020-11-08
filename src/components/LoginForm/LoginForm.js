@@ -89,7 +89,7 @@ const LoginForm = ({
   return (
     <div className="login">
       {isFailed && show && (
-        <Alert /* onClose={() => setShow(false)} dismissible */>
+        <Alert>
           <img src={cautionIcon} alt="caution" />
           <p>{error}</p>
         </Alert>

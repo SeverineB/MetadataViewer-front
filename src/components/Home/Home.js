@@ -5,7 +5,6 @@ import { Alert } from 'react-bootstrap';
 
 import './Home.scss';
 
-// import Components
 import About from './About/About';
 import Gallery from '../../containers/Gallery';
 

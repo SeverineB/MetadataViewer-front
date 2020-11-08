@@ -3,7 +3,6 @@
 
 import {
   FETCH_USER_FILES,
-  fetchUserFiles,
   saveFiles,
   saveMetadata,
   saveFile,
@@ -12,7 +11,6 @@ import {
   UPLOAD_FILE,
   uploadSuccess,
   uploadFailed,
-  addFile,
   DELETE_FILE,
 } from '../actions';
 
@@ -79,8 +77,6 @@ const image = (store) => (next) => (action) => {
       const state = store.getState();
       const imageId = state.image.file.image._id;
       const userId = localStorage.getItem('id');
-      console.log('userId', userId);
-      console.log('imageId', imageId);
       api.delete(`images/delete/${userId}/${imageId}`,
         {
           withCredentials: true,

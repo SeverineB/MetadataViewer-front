@@ -17,6 +17,7 @@ const UploadForm = ({
   uploadFile,
 }) => {
   const [show, setShow] = useState(false);
+  const [disabled, setDisabled] = useState(true);
 
   const handleChange = (evt) => {
     evt.preventDefault();
@@ -25,6 +26,7 @@ const UploadForm = ({
     if (evt.target.files[0]) {
       changeFile(fileToUpload);
       changeUrl(newFileUrl);
+      setDisabled(false);
     }
   };
 
@@ -34,9 +36,6 @@ const UploadForm = ({
     setShow(true);
     changeUrl('');
   };
-
-  console.log('IS LOADED', isLoaded);
-  console.log('SHOW', show);
 
   return (
     <div className="upload-image">
@@ -64,6 +63,7 @@ const UploadForm = ({
         </Form.Group>
         <Button
           type="submit"
+          disabled={disabled}
         >
           Télécharger
         </Button>

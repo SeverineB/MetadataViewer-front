@@ -4,11 +4,26 @@
 
   .alert {
     margin: 0.5em auto;
+    margin-bottom: 1em;
     padding: 1em;
     padding-top: 1.5em;
-    width: 90vw;
+    width: 90%;
     background-color: $main-color;
     border-radius: 30.5px;
+    @include m400() {
+      width: 20em;
+     };
+    @include m767() {
+      width: 12em;
+      position: absolute;
+      top: 26%;
+      left: 2%;
+     };
+    @include m1200() {
+      width: 21em;
+      padding: 1.1em;
+    };
+
     p {
       font-size: 0.8em;
       color: #ffffff;
@@ -19,6 +34,10 @@
       padding: 0.2em 0.4em;
       color: $accent-color;
       font-size: 2em;
+      @include m1200() {
+        padding: 0.2em;
+        padding-left: 0.4em;
+       };
     }
 
     .span-bold {
@@ -29,5 +48,4 @@
       font-style: italic;
     }
   }
-
 }

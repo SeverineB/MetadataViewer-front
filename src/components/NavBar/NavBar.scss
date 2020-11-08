@@ -1,5 +1,9 @@
 @import 'src/styles/vars';
 
+.bg-light {
+  background-color:  $light-color!important;
+}
+
 .navbar-nav {
   margin-top: 0;
   display: flex;
@@ -16,10 +20,6 @@
     font-weight: bold;
     padding: 0.8em 1em;
   }
-}
-
-.bg-light {
-  background-color:  $light-color!important;
 }
 
 .navbar-collapse {

@@ -7,6 +7,7 @@ import './NavBar.scss';
 
 const NavBar = ({ isLogged, logout }) => {
   const [expanded, setExpanded] = useState(false);
+  
   const handleLogout = (evt) => {
     evt.preventDefault();
     logout();

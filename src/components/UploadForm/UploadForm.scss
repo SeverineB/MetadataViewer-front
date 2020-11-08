@@ -71,6 +71,10 @@
         box-shadow: none !important;
       }
     }
+
+    .btn-primary[disabled] {
+      pointer-events: none;
+    }
   
     &-btn {
       input[type=file]{

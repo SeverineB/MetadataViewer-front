@@ -19,7 +19,7 @@
         -2px -2px 12px 0 rgba(0, 0, 0, 0.25);
     border-radius: 30.5px;
     padding: 2em 1em;
-    width: 80%;
+    width: 25em;
     font-size: 0.9em;
     @include m767() {
       width: 40%;
@@ -69,6 +69,11 @@
 
       .form-control {
         border: none;
+      }
+
+      .is-invalid {
+        border-color: rgb(247, 142, 142);
+        box-shadow: inset 0 1px 1px rgb(247, 142, 142), 0 0 8px rgb(247, 142, 142);
       }
 
       .form-control:focus {
@@ -122,6 +127,12 @@
   .success-message {
     width: 80%;
     margin-top: 2em;
+    display: flex;
+    flex-direction: column;
+   align-items: center;
+    @include m1200() {
+      width: 30%;
+    };
     img {
       width: 4em;
       margin: 0;
@@ -138,12 +149,6 @@
       box-shadow: 
         4px 4px 16px 0 rgba(70, 69, 69, 0.44),
         -2px -2px 12px 0 rgba(238, 238, 238, 0.44);
-      @include m767() {
-        width: 40%;
-       };
-      @include m1200() {
-        width: 20%;
-      };
       p {
         padding: 0;
       }

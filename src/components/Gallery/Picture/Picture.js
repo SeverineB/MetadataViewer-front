@@ -19,8 +19,6 @@ const Picture = ({
 }) => {
   const { name, size, type } = file.metadata;
 
-  console.log('IS LOGGED DANS PICTURE', isLogged);
-
   // construct the url of the image
   const fileToUrl = () => {
     const imageUrl = `${urlServer}/${file.image.thumbnailPath}`;
@@ -40,6 +38,12 @@ const Picture = ({
     return styledData;
   };
 
+  const convertInMo = (size) => {
+    const sizeInMo = parseInt(size) / 1000000;
+    const newSize = sizeInMo.toFixed(2);
+    return newSize;
+  }
+
   return (
     <>
       <div className="picture-item">
@@ -52,7 +56,6 @@ const Picture = ({
         <div className="picture-item-image">
           {isLogged && <img src={fileToUrl()} alt={file.image.name} />}
           {!isLogged && <img src={defaultPicture} alt={defaultPicture} />}
-         {/*  <img src={!isLogged ? `${urlServer}/${file.image.imagePath}` : `${urlServer}/${file.image.thumbnailPath}`} alt={file.image.name} /> */}
         </div>
         <div className="picture-item-metadatas">
           <div className="picture-item-metadatas-name">
@@ -61,7 +64,7 @@ const Picture = ({
           </div>
           <div className="picture-item-metadatas-size">
             <span>Taille :</span>
-            <p>{size} octets</p>
+            <p>{convertInMo(size)} Mo</p>
           </div>
           <div className="picture-item-metadatas-type">
             <span>Type :</span>
