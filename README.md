@@ -6,7 +6,7 @@
 
 Cette application permet de visualiser les métadonnées d'une image que l'on a téléchargée, après s'être inscrit et connecté.
 
-![Capture](https://github.com/SeverineB/MetadataViewer-front/metadata-capture-thumb.png)
+(https://github.com/SeverineB/MetadataViewer-front/blob/main/metadata-capture-thumb.png)
 
 ### Frameworks & outils utilisés
 ----------------------------------
