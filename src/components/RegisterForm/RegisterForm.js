@@ -117,7 +117,7 @@ const RegisterForm = ({
       {!isSignedUp && !isLoading && (
         <>
           <Form className="register-form" onSubmit={handleSubmit}>
-            <h2 className="register-form-title">Créez votre compte</h2>
+            <h2 className="register-form-title">inscription</h2>
             <Form.Group controlId="formBasicUsername">
               <Form.Control
                 type="username"

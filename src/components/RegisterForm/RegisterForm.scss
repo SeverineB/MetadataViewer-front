@@ -4,43 +4,41 @@
   display: flex;
   flex-direction: column;
   width: 100vw;
-  height: 60%;
+  height: 60vh;
   justify-content: space-around;
   align-items: center;
   @include m767() {
     margin-top: 5em;
-    height: 60vh;
    };
   
   &-form {
     background-color: $main-color;
     box-shadow: 
-        12px 12px 16px 0 rgba(0, 0, 0, 0.25),
-        -2px -2px 12px 0 rgba(0, 0, 0, 0.25);
+      12px 12px 16px 0 rgba(0, 0, 0, 0.25),
+      -2px -2px 12px 0 rgba(114, 112, 112, 0.4);
     border-radius: 30.5px;
     padding: 2em 1em;
     width: 25em;
     font-size: 0.9em;
     @include m767() {
-      width: 40%;
+      width: 24em;
      };
     @include m1024() {
-      width: 35%;
+      width: 26em;
      };
     @include m1200() {
-      width: 30%;
+      width: 25em;
      };
     @include m1600() {
       top: 50%;
-      width: 20%;
     };
   
     &-title {
-      font-family: 'PlayfairDisplay';
+      font-family: 'Poppins';
       color: #ffffff;
-      font-size: 1.4em;
+      font-size: 1.6em;
       font-weight: bold;
-      font-style: italic;
+      text-transform: uppercase;
       margin-bottom: 1em;
     }
   
@@ -51,10 +49,24 @@
       width: 10em;
       margin: 1em 0;
       font-size: 1em;
+      font-weight: bold;
 
       &:hover {
-        background-color: $main-color;
+        background-color: $accent-color;
+        color: $dark-color;
         transition: background-color 0.3s ease-in;
+      }
+
+      &:active {
+        background-color: $accent-color !important;
+        color: $dark-color !important;
+        border: none !important;
+        box-shadow: none !important;
+      }
+
+      &:focus {
+        border: none;
+        box-shadow: none;
       }
     }
   
@@ -71,14 +83,14 @@
         border: none;
       }
 
-      .is-invalid {
-        border-color: rgb(247, 142, 142);
-        box-shadow: inset 0 1px 1px rgb(247, 142, 142), 0 0 8px rgb(247, 142, 142);
-      }
-
       .form-control:focus {
         border-color: none;
         box-shadow: inset 0 1px 1px #dde7e5, 0 0 8px #dde7e5;
+      }
+
+      .is-invalid {
+        border-color: rgb(247, 142, 142);
+        box-shadow: inset 0 1px 1px rgb(247, 142, 142), 0 0 8px rgb(247, 142, 142);
       }
 
       input {
@@ -178,11 +190,13 @@
   
   .login-link {
     margin-top: 1em;
-    p{
+    p {
+      margin-bottom: 0.4em;
       color: #ffffff;
     }
     a {
       color: $accent-color;
+      text-decoration: none;
       font-weight: bold;
     }
   }

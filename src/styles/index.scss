@@ -10,7 +10,7 @@ html {
 }
 
 body {
-  font-family: 'Montserrat'!important;
+  font-family: 'Open Sans'!important;
   margin: 0;
   padding: 0;
   position: relative;
@@ -21,13 +21,6 @@ body {
 // FONTS
 
 @font-face {
-  font-family: "Nunito";
-  src: url("../../src/assets/fonts/Nunito-Regular.ttf");
-    font-weight: normal;
-    font-style: normal;
-}
-
-@font-face {
   font-family: "LLPixel";
   src: url("../../src/assets/fonts/LLPIXEL3.ttf");
     font-weight: normal;
@@ -35,22 +28,15 @@ body {
 }
 
 @font-face {
-  font-family: "PlayfairDisplay";
-  src: url("../../src/assets/fonts/PlayfairDisplay-Regular.ttf");
+  font-family: "Poppins";
+  src: url("../../src/assets/fonts/Poppins-regular.ttf");
     font-weight: normal;
     font-style: normal;
 }
 
 @font-face {
-  font-family: "Montserrat";
-  src: url("../../src/assets/fonts/Montserrat-regular.ttf");
-    font-weight: normal;
-    font-style: normal;
-}
-
-@font-face {
-  font-family: "Quicksand";
-  src: url("../../src/assets/fonts/Quicksand-regular.ttf");
+  font-family: "Open Sans";
+  src: url("../../src/assets/fonts/OpenSans-regular.ttf");
     font-weight: normal;
     font-style: normal;
 }

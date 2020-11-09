@@ -96,7 +96,7 @@ const LoginForm = ({
       )}
       {!isLogged && !isLoading && (
         <Form className="login-form" onSubmit={handleSubmit}>
-          <h2 className="login-form-title">Connectez-vous à votre compte</h2>
+          <h2 className="login-form-title">connexion</h2>
           <Form.Group controlId="formBasicEmail">
             <Form.Control
               type="email"

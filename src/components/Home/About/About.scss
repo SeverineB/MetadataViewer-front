@@ -14,20 +14,34 @@
       width: 20em;
      };
     @include m767() {
-      width: 12em;
+      width: 15em;
       position: absolute;
       top: 26%;
       left: 2%;
      };
+     @include m1024() {
+      width: 20em;
+      padding: 1.1em;
+    };
     @include m1200() {
-      width: 21em;
+      width: 22em;
       padding: 1.1em;
     };
 
     p {
+      width: 94%;
       font-size: 0.8em;
+      font-weight: normal;
       color: #ffffff;
-      margin-bottom: 0;
+      margin-bottom: 0.2em;
+      line-height: 1.5em;
+      @include m1024() {
+        font-size: 0.9em;
+        width: 92%;
+      };
+      @include m1200() {
+        font-size: 0.9em;
+      };
     }
 
     .close {

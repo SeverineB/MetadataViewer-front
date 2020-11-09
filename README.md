@@ -16,6 +16,9 @@ Cette application permet de visualiser les métadonnées d'une image que l'on a 
 * [Sass](https://sass-lang.com/)
 * [Axios](https://github.com/axios/axios)
 * [Bootstrap](https://react-bootstrap.github.io/)
+* [Enzyme](https://www.npmjs.com/package/enzyme)
+* [Mocha](https://mochajs.org/)
+* [Chai](https://www.chaijs.com/)
 
 ### Installation
 ----------------
@@ -25,11 +28,13 @@ Cette application permet de visualiser les métadonnées d'une image que l'on a 
   - yarn
 * Lancement du projet en mode développement
   - yarn start
+* Lancement du projet en mode test
+  - yarn test (ou yarn test:watch pour lancer les test en continu)
 * Lancer l'application dans le navigateur en mode développement
   - http://localhost:8080
 * Lancement du projet en mode production
   - yarn build
-* Utiliser le .env.example afin de configurer le .env avec les variables d'environnement nécessaires
+* Utiliser le .env.example afin de configurer le .env (à créer à la racine du projet) avec les variables d'environnement nécessaires
 
 ### Backend
 -----------
@@ -40,4 +45,5 @@ https://github.com/SeverineB/MetadataViewer-back
 -----------------
 
 * Passage en HTTPS (back et front)
+* Vérification de l'email à l'inscription
 

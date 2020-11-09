@@ -15,7 +15,7 @@ import {
   DELETE_PICTURE_ON_SCREEN,
 } from '../actions';
 
-const initialState = {
+export const initialState = {
   files: [],
   file: {},
   fileUrl: '',

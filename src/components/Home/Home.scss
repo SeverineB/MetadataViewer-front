@@ -16,16 +16,18 @@
   };
   
   .alert-welcome, .alert {
-    width: 70%;
-    font-family: 'Montserrat';
+    width: 80vw;
     background-color: $light-color;
     border-radius: 30.5px;
     z-index: 10;
     box-shadow: 
     12px 12px 16px 0 rgba(0, 0, 0, 0.25),
     -6px -6px 12px 0 rgba(0, 0, 0, 0.25);
+    @include m400() {
+      width: 20em;
+     };
     @include m767() {
-      width: 28em;
+      width: 24em;
     };
     @include m1600() {
       width: 27em;
@@ -35,8 +37,11 @@
       color: $dark-color;
       width: 100%;
       margin-bottom: 0.2em;
-      @include m1200() {
+      @include m767() {
         font-size: 0.9em;
+       };
+      @include m1200() {
+        line-height: 1.5em;
        };
     }
   }
@@ -48,12 +53,6 @@
         font-size: 1.1em;
         margin: 0 0.2em;
       }
-    }
-  }
-
-  .alert {
-    p {
-      font-weight: bold;
     }
   }
 }
