@@ -137,13 +137,14 @@
   }
 
   .success-message {
-    width: 80%;
+    width: 20em;
     margin-top: 2em;
     display: flex;
     flex-direction: column;
-   align-items: center;
+    align-items: center;
+    justify-content: space-around;
     @include m1200() {
-      width: 30%;
+      width: 30em;
     };
     img {
       width: 4em;
@@ -176,13 +177,19 @@
         margin: 0;
         a {
           color: #ffffff;
+          text-decoration: none;
           &:focus {
             color: #ffffff;
+            text-decoration: none;
           }
         }
   
         &:hover {
-          background-color: $main-color;
+          background-color: $accent-color;
+          a {
+            color: $dark-color;
+          }
+      
         }
       } 
     }
