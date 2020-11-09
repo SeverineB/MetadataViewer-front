@@ -34,7 +34,6 @@ Cette application permet de visualiser les métadonnées d'une image que l'on a 
   - http://localhost:8080
 * Lancement du projet en mode production
   - yarn build
-* Utiliser le .env.example afin de configurer le .env (à créer à la racine du projet) avec les variables d'environnement nécessaires
 
 ### Backend
 -----------
