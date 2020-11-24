@@ -42,8 +42,11 @@ Cette application permet de visualiser les métadonnées d'une image que l'on a 
 ---------------------
 
 C'est le premier projet que je développe avec la MERN stack.
-Côté client, j'ai dû apprendre à gérer de façon globale les erreurs avec les périmètres d'erreurs (Errors Boundaries).
-Le state de l'application est géré par Redux, j'utilise également des hooks dans certains composants, lorsqu'un état local est plus approprié.
+
+Côté client, j'ai dû apprendre à gérer de façon globale les erreurs avec les périmètres d'erreurs (*Errors Boundaries*).
+
+Le state de l'application est géré par **Redux**, j'utilise également des **hooks** dans certains composants, lorsqu'un état local est plus approprié.
+
 Pour le routage de l'application, j'utilise le composant Private Route de React Router qui permet de ne donner accès à certains composants qu'aux utilisateurs connectés.
 
 ### Améliorations
