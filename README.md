@@ -6,6 +6,7 @@
 
 Cette application permet de visualiser les métadonnées d'une image que l'on a téléchargée, après s'être inscrit et connecté.
 
+![](https://github.com/SeverineB/MetadataViewer-front/blob/main/metadata-capture-thumb.png)
 
 ### Frameworks & outils utilisés
 ----------------------------------
@@ -22,6 +23,8 @@ Cette application permet de visualiser les métadonnées d'une image que l'on a 
 
 ### Installation
 ----------------
+
+*Ce projet nécessite d'avoir une base de données MongoDB (possibilité d'en créer une avec MongoDB Atlas).*
 
 * Cloner le dépôt (nécessite d'avoir Node installé)
 * Installation des dépendances
