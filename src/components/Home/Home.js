@@ -22,6 +22,7 @@ const Home = ({
           <About />
           <Alert>
             <p>Connectez-vous pour accéder à votre galerie personnelle et au téléchargement</p>
+            <p>Vous pouvez tester avec l'email "testeur@gmail.com" et le mot de passe "Test1"</p>
           </Alert>
         </>
       )}
